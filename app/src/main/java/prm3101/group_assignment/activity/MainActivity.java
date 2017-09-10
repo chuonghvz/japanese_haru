@@ -1,22 +1,19 @@
 package prm3101.group_assignment.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.view.MenuItem;
-import android.view.WindowManager;
 
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.fragment.HomeFragment;
 import prm3101.group_assignment.fragment.ProfileFragment;
+import prm3101.group_assignment.fragment.WordListsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -37,13 +34,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, new HomeFragment()).commit();
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        WindowManager windowmanager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
-        int deviceWidth = displayMetrics.widthPixels;
-        int deviceHeight = displayMetrics.heightPixels;
-        NavigationView mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mNavigationView.setMinimumHeight(deviceHeight);
+//        DisplayMetrics displayMetrics = new DisplayMetrics();
+//        WindowManager windowmanager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+//        windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
+//        int deviceWidth = displayMetrics.widthPixels;
+//        int deviceHeight = displayMetrics.heightPixels;
+//        NavigationView mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+//        DrawerLayout.LayoutParams params = (android.support.v4.widget.DrawerLayout.LayoutParams) mNavigationView.getLayoutParams();
+//        params.height = deviceHeight - 100;
+//        mNavigationView.setLayoutParams(params);
     }
 
 
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.content, new ProfileFragment()).commit();
                     return true;
                 case R.id.bottom_other:
-                    transaction.replace(R.id.content, new HomeFragment()).commit();
+                    transaction.replace(R.id.content, new WordListsFragment()).commit();
                     return true;
             }
             return false;

@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
-                case R.id.navigation_home1:
+                case R.id.bottom_home:
                     transaction.replace(R.id.content, new HomeFragment()).commit();
                     return true;
-                case R.id.navigation_home2:
+                case R.id.bottom_profile:
                     transaction.replace(R.id.content, new ProfileFragment()).commit();
                     return true;
-                case R.id.navigation_home3:
+                case R.id.bottom_other:
                     transaction.replace(R.id.content, new HomeFragment()).commit();
                     return true;
             }

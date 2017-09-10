@@ -8,22 +8,26 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.fragment.HomeFragment;
-import prm3101.group_assignment.fragment.ProfileFragment;
-import prm3101.group_assignment.fragment.WordListsFragment;
+import prm3101.group_assignment.fragment.SearchFragment;
+import prm3101.group_assignment.fragment.TranslateFragment;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        setSupportActionBar(mToolbar);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -34,15 +38,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, new HomeFragment()).commit();
 
-//        DisplayMetrics displayMetrics = new DisplayMetrics();
-//        WindowManager windowmanager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-//        windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
-//        int deviceWidth = displayMetrics.widthPixels;
-//        int deviceHeight = displayMetrics.heightPixels;
-//        NavigationView mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-//        DrawerLayout.LayoutParams params = (android.support.v4.widget.DrawerLayout.LayoutParams) mNavigationView.getLayoutParams();
-//        params.height = deviceHeight - 100;
-//        mNavigationView.setLayoutParams(params);
+
     }
 
 
@@ -57,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.bottom_home:
                     transaction.replace(R.id.content, new HomeFragment()).commit();
                     return true;
-                case R.id.bottom_profile:
-                    transaction.replace(R.id.content, new ProfileFragment()).commit();
+                case R.id.bottom_search:
+                    transaction.replace(R.id.content, new SearchFragment()).commit();
                     return true;
-                case R.id.bottom_other:
-                    transaction.replace(R.id.content, new WordListsFragment()).commit();
+                case R.id.bottom_translate:
+                    transaction.replace(R.id.content, new TranslateFragment()).commit();
                     return true;
             }
             return false;

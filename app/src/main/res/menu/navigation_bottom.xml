@@ -6,13 +6,13 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="Home"/>
     <item
-        android:id="@+id/bottom_profile"
-        android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="You"/>
+        android:id="@+id/bottom_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"/>
 
     <item
-        android:id="@+id/bottom_other"
+        android:id="@+id/bottom_translate"
         android:icon="@mipmap/ic_assignment_black_24dp"
-        android:title="Wordlists"/>
+        android:title="Translate"/>
 
 </menu>

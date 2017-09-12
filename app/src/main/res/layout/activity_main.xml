@@ -13,17 +13,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/navigation_action"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 />
+        <include
+            layout="@layout/navigation_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <FrameLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/content">
-        </FrameLayout>
+            android:layout_weight="1"></FrameLayout>
+
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"
             android:layout_width="match_parent"

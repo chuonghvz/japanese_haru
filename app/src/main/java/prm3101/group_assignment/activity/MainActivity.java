@@ -1,10 +1,13 @@
 package prm3101.group_assignment.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,10 +16,12 @@ import android.view.MenuItem;
 
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.fragment.HomeFragment;
+import prm3101.group_assignment.fragment.JLPTFragment;
 import prm3101.group_assignment.fragment.SearchFragment;
 import prm3101.group_assignment.fragment.TranslateFragment;
+import prm3101.group_assignment.fragment.WordListFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, new HomeFragment()).commit();
+        setNavigationViewListner();
 
 
     }
@@ -71,5 +77,46 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+//    public void setting(View view) {
+//        Intent intent = new Intent(this, SettingsActivity.class);
+//        startActivity(intent);
+//    }
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        switch (item.getItemId()) {
+
+            case R.id.setting: {
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.word_list: {
+                fragmentManager.beginTransaction().replace(R.id.content, new WordListFragment()).commit();
+                break;
+            }
+            case R.id.jlpt: {
+                fragmentManager.beginTransaction().replace(R.id.content, new JLPTFragment()).commit();
+                break;
+            }
+//            case R.id.search_word: {
+//                fragmentManager.beginTransaction().replace(R.id.content, new ItemFragment()).commit();
+//                break;
+//            }
+        }
+//        if (item.getItemId() == R.id.word_list) {
+//            fragmentManager.beginTransaction().replace(R.id.content, new WordListFragment()).commit();
+//            // Handle the camera action
+//        }
+        //close navigation drawer
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+    private void setNavigationViewListner() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
 }

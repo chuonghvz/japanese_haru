@@ -9,7 +9,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Header Navigation"
+        android:text="Học tiếng Nhật cùng Chú Tư"
         android:padding="20dp"
         android:textSize="24dp"
         />

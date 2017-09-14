@@ -11,8 +11,8 @@
         android:title="Search"/>
 
     <item
-        android:id="@+id/bottom_translate"
-        android:icon="@mipmap/ic_assignment_black_24dp"
-        android:title="Translate"/>
+        android:id="@+id/bottom_profile"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="You"/>
 
 </menu>

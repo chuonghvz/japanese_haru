@@ -17,8 +17,7 @@ import android.view.MenuItem;
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.fragment.HomeFragment;
 import prm3101.group_assignment.fragment.JLPTFragment;
-import prm3101.group_assignment.fragment.SearchFragment;
-import prm3101.group_assignment.fragment.TranslateFragment;
+import prm3101.group_assignment.fragment.ProfileFragment;
 import prm3101.group_assignment.fragment.WordListFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         transaction.replace(R.id.content, new HomeFragment()).commit();
         setNavigationViewListner();
 
-
     }
 
 
@@ -60,10 +58,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     transaction.replace(R.id.content, new HomeFragment()).commit();
                     return true;
                 case R.id.bottom_search:
-                    transaction.replace(R.id.content, new SearchFragment()).commit();
+                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                    startActivity(intent);
                     return true;
-                case R.id.bottom_translate:
-                    transaction.replace(R.id.content, new TranslateFragment()).commit();
+                case R.id.bottom_profile:
+                    transaction.replace(R.id.content, new ProfileFragment()).commit();
                     return true;
             }
             return false;

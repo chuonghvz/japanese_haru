@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Learn Japanese</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
 
@@ -7,6 +7,13 @@
     <string name="word_list">Word List</string>
     <string name="jlpt">JLPT</string>
     <string name="title_activity_settings">Settings</string>
+    <string-array name="level_array">
+        <item>N5</item>
+        <item>N4</item>
+        <item>N3</item>
+        <item>N2</item>
+        <item>N1</item>
+    </string-array>
 
     <!-- Strings related to Settings -->
 

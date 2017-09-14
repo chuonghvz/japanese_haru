@@ -1,13 +1,80 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+                android:background="@color/grey"
              tools:context="prm3101.group_assignment.fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home fragment"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/base_10"
+        android:id="@+id/te1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/te2"
+            android:text="Chon cap do:"
+            android:layout_centerVertical="true"/>
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_toRightOf="@+id/te2"
+            android:id="@+id/static_spinner"
+            android:layout_marginLeft="@dimen/base_12"
+            android:layout_height="wrap_content"/>
 
-</FrameLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/te1">
+        <RelativeLayout
+            android:layout_width="170dp"
+            android:layout_height="80dp"
+            android:background="@color/colorPrimary"
+            android:layout_margin="@dimen/base_10"
+            android:id="@+id/a1">
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_margin="@dimen/base_10"
+            android:layout_width="170dp"
+            android:layout_height="80dp"
+            android:background="@color/colorAccent"
+            android:layout_toRightOf="@+id/a1"
+            android:id="@+id/a2">
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="170dp"
+            android:layout_height="80dp"
+            android:background="@color/colorPrimary"
+            android:layout_margin="@dimen/base_10"
+            android:layout_below="@+id/a1"
+            android:id="@+id/a3">
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_margin="@dimen/base_10"
+            android:layout_width="170dp"
+            android:layout_height="80dp"
+            android:background="@color/colorAccent"
+            android:layout_toRightOf="@+id/a3"
+            android:layout_below="@+id/a2"
+            android:id="@+id/a4">
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="170dp"
+            android:layout_height="80dp"
+            android:background="@color/colorPrimary"
+            android:layout_margin="@dimen/base_10"
+            android:layout_below="@+id/a3"
+            android:id="@+id/a5">
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

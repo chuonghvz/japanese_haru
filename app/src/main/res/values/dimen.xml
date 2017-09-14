@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="base_24">24dp</dimen>
+    <dimen name="base_22">22dp</dimen>
+    <dimen name="base_20">20dp</dimen>
+    <dimen name="base_12">12dp</dimen>
+    <dimen name="base_10">10dp</dimen>
+    <dimen name="base_8">8dp</dimen>
+    <dimen name="base_14">14dp</dimen>
+    <dimen name="base_16">16dp</dimen>
+    <dimen name="base_18">18dp</dimen>
 </resources>

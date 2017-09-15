@@ -4,36 +4,33 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import prm3101.group_assignment.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link JLPTFragment.OnFragmentInteractionListener} interface
+ * {@link SentenceFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link JLPTFragment#newInstance} factory method to
+ * Use the {@link SentenceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class JLPTFragment extends Fragment {
+public class SentenceFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    public JLPTFragment() {
+    public SentenceFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +40,11 @@ public class JLPTFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment JLPTFragment.
+     * @return A new instance of fragment SentenceFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static JLPTFragment newInstance(String param1, String param2) {
-        JLPTFragment fragment = new JLPTFragment();
+    public static SentenceFragment newInstance(String param1, String param2) {
+        SentenceFragment fragment = new SentenceFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,40 +59,13 @@ public class JLPTFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_home, container, false);
-        Spinner staticSpinner = (Spinner) v.findViewById(R.id.static_spinner);
-
-//         Create an ArrayAdapter using the string array and a default spinner
-        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
-                .createFromResource(getActivity().getApplicationContext(), R.array.level_array,
-                        android.R.layout.simple_dropdown_item_1line);
-
-        // Specify the layout to use when the list of choices appears
-        staticAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        staticSpinner.setAdapter(staticAdapter);
-        staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
-        return v;
+        return inflater.inflate(R.layout.fragment_tab_fragment3, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

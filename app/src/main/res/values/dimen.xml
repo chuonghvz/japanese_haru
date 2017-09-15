@@ -11,4 +11,9 @@
     <dimen name="base_14">14dp</dimen>
     <dimen name="base_16">16dp</dimen>
     <dimen name="base_18">18dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+
 </resources>

@@ -2,7 +2,7 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/setting"
+        android:id="@+id/basic"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="Kiến thức cơ bản" />
     <item android:id="@+id/search_word"
@@ -12,7 +12,7 @@
           android:icon="@drawable/ic_account_circle_black_24dp"
           android:title="JLPT"/>
     <item
-        android:id="@+id/word_major"
+        android:id="@+id/word_topic"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="Từ chủ đề" />
     <item

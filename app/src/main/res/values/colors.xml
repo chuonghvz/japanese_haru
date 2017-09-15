@@ -2,8 +2,11 @@
 <resources>
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="primary_light">#E5E4D7</color>
+    <color name="black">#000</color>
     <color name="white">#FFF</color>
-    <color name="grey">#f7f9f7</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="grey">#ececec</color>
+    <color name="grey_line">#777373</color>
     <color name="bg_activity">#ededed</color>
 </resources>

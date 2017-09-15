@@ -3,37 +3,44 @@ package prm3101.group_assignment.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTabHost;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import prm3101.group_assignment.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link JLPTFragment.OnFragmentInteractionListener} interface
+ * {@link BasicFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link JLPTFragment#newInstance} factory method to
+ * Use the {@link BasicFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class JLPTFragment extends Fragment {
+public class BasicFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private FragmentTabHost mTabHost;
+
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    public JLPTFragment() {
+    public BasicFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +50,11 @@ public class JLPTFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment JLPTFragment.
+     * @return A new instance of fragment BasicFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static JLPTFragment newInstance(String param1, String param2) {
-        JLPTFragment fragment = new JLPTFragment();
+    public static BasicFragment newInstance(String param1, String param2) {
+        BasicFragment fragment = new BasicFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,41 +69,61 @@ public class JLPTFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_home, container, false);
-        Spinner staticSpinner = (Spinner) v.findViewById(R.id.static_spinner);
-
-//         Create an ArrayAdapter using the string array and a default spinner
-        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
-                .createFromResource(getActivity().getApplicationContext(), R.array.level_array,
-                        android.R.layout.simple_dropdown_item_1line);
-
-        // Specify the layout to use when the list of choices appears
-        staticAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        staticSpinner.setAdapter(staticAdapter);
-        staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
-        return v;
+        View x = inflater.inflate(R.layout.fragment_basic, null);
+        TabLayout tabLayout = (TabLayout) x.findViewById(R.id.tabs);
+        ViewPager viewPager = (ViewPager) x.findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+//        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+//        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        return x;
     }
+
+    private void setupViewPager(ViewPager viewPager) {
+        Adapter adapter = new Adapter(getChildFragmentManager());
+        adapter.addFragment(new HiraFragment(), "Hiragana");
+        adapter.addFragment(new KataFragment(), "Katakana");
+        adapter.addFragment(new SentenceFragment(), "Mẫu câu");
+        viewPager.setAdapter(adapter);
+    }
+
+
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public Adapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

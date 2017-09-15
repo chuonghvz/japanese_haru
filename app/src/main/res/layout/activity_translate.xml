@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context="prm3101.group_assignment.activity.TranslateActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_10"
+        android:id="@+id/rootWord"
+        android:background="@drawable/shadow_round"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:id="@+id/languageChoose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/base_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/base_24"
+                android:paddingRight="@dimen/base_24"
+                android:text="Tieng Nhat"
+                android:textSize="@dimen/base_16"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/base_24"
+                android:paddingRight="@dimen/base_24"
+                android:src="@drawable/ic_compare_arrows_black_24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/base_24"
+                android:paddingRight="@dimen/base_24"
+                android:text="Tieng Viet"
+                android:textSize="@dimen/base_16"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/languageChoose"
+            android:layout_marginTop="20dp"
+            android:background="@color/grey_line"/>
+        <EditText
+            android:id="@+id/addr_edittext"
+            android:layout_below="@+id/line"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/base_8"
+            android:paddingTop="@dimen/base_8"
+            android:gravity="top|left"
+            android:inputType="textEmailAddress|textMultiLine"
+            android:lines="20"
+            android:minLines="7"
+            android:background="#00000000"
+            android:scrollHorizontally="false"
+            android:scrollbars="vertical" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_black_24dp"
+            android:layout_below="@+id/line"
+            android:padding="@dimen/base_10"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btnTranslate"
+        android:layout_below="@+id/rootWord"
+        android:layout_width="wrap_content"
+        android:background="@drawable/shadow_round"
+        android:text="Dich"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_round"
+        android:layout_below="@+id/btnTranslate">
+        <TextView
+            android:id="@+id/address1"
+            android:gravity="left"
+            android:textStyle="bold"
+            android:textSize="@dimen/base_16"
+            android:paddingLeft="@dimen/base_8"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:maxLines="10"
+            android:lines="10"
+            android:text="aaaaaaaa" />
+    </RelativeLayout>
+</RelativeLayout>

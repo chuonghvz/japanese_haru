@@ -17,22 +17,23 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 import prm3101.group_assignment.R;
-import prm3101.group_assignment.fragment.HomeFragment;
+import prm3101.group_assignment.fragment.BasicFragment;
 import prm3101.group_assignment.fragment.JLPTFragment;
 import prm3101.group_assignment.fragment.ProfileFragment;
-import prm3101.group_assignment.fragment.WordListFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
     private ArrayList navDrawerItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        mToolbar.setTitle("Kiến thức cơ bản");
         setSupportActionBar(mToolbar);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.content, new HomeFragment()).commit();
+        transaction.replace(R.id.content, new BasicFragment()).commit();
         setNavigationViewListner();
 
 
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.bottom_home:
-                    transaction.replace(R.id.content, new HomeFragment()).commit();
+                    transaction.replace(R.id.content, new BasicFragment()).commit();
+                    mToolbar.setTitle("Kiến thức cơ bản");
                     return true;
                 case R.id.bottom_search:
                     Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     return true;
                 case R.id.bottom_profile:
                     transaction.replace(R.id.content, new ProfileFragment()).commit();
+                    mToolbar.setTitle("Tôi");
                     return true;
             }
             return false;
@@ -80,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return super.onOptionsItemSelected(item);
     }
-//    public void setting(View view) {
+
+    //    public void setting(View view) {
 //        Intent intent = new Intent(this, SettingsActivity.class);
 //        startActivity(intent);
 //    }
@@ -90,32 +94,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch (item.getItemId()) {
 
-            case R.id.setting: {
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+            case R.id.basic: {
+                fragmentManager.beginTransaction().replace(R.id.content, new BasicFragment()).commit();
                 break;
             }
-            case R.id.word_major: {
-                fragmentManager.beginTransaction().replace(R.id.content, new WordListFragment()).commit();
+            case R.id.search_word: {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.jlpt: {
                 fragmentManager.beginTransaction().replace(R.id.content, new JLPTFragment()).commit();
                 break;
             }
-//            case R.id.search_word: {
-//                fragmentManager.beginTransaction().replace(R.id.content, new ItemFragment()).commit();
-//                break;
-//            }
+            case R.id.word_topic: {
+                break;
+            }
+            case R.id.translate: {
+                Intent intent = new Intent(getApplicationContext(), TranslateActivity.class);
+                startActivity(intent);
+                break;
+            }
+            default:
+                break;
         }
-//        if (item.getItemId() == R.id.word_list) {
-//            fragmentManager.beginTransaction().replace(R.id.content, new WordListFragment()).commit();
-//            // Handle the camera action
-//        }
+
         //close navigation drawer
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
     private void setNavigationViewListner() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);

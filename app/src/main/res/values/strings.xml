@@ -6,6 +6,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="word_list">Word List</string>
     <string name="jlpt">JLPT</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_settings">Settings</string>
     <string name="spinner_title">Chọn cấp độ</string>
     <string-array name="level_array">
@@ -74,7 +76,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="multi_select_list_preference_default_value" />
+    <string-array name="multi_select_list_preference_default_value"/>
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 

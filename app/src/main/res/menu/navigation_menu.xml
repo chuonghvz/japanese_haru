@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Kiến thức cơ bản" />
     <item android:id="@+id/search_word"
           android:icon="@drawable/ic_home_black_24dp"
         android:title="Tra từ"/>
     <item android:id="@+id/jlpt"
           android:icon="@drawable/ic_account_circle_black_24dp"
           android:title="JLPT"/>
-    <item android:id="@+id/word_list"
-        android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="Từ của tôi"/>
-    <item android:id="@+id/word_major"
-        android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="Từ chuyên ngành"/>
-    <item android:id="@+id/setting"
-          android:icon="@mipmap/ic_assignment_black_24dp"
-          android:title="Cài đặt"/>
+    <item
+        android:id="@+id/word_major"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Từ chủ đề" />
+    <item
+        android:id="@+id/translate"
+        android:icon="@mipmap/translate"
+        android:title="Dịch văn bản" />
 </menu>

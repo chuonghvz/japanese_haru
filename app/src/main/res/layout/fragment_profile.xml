@@ -22,7 +22,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:padding="@dimen/base_14"
-                android:src="@drawable/ic_bookmark_black_24dp"/>
+                android:src="@mipmap/if_favorite" />
 
             <TextView
                 android:id="@+id/abc"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/i1"
-                android:text="Yeu thich"
+                android:text="Yêu thích"
                 android:textSize="@dimen/base_16"/>
         </RelativeLayout>
 
@@ -53,7 +53,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:padding="@dimen/base_14"
-                android:src="@drawable/ic_star_border_black_24dp"/>
+                android:src="@mipmap/if_star_370074" />
 
             <TextView
                 android:id="@+id/abc2"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/i2"
-                android:text="Danh gia"
+                android:text="Đánh giá"
                 android:textSize="@dimen/base_16"/>
 
         </RelativeLayout>
@@ -85,7 +85,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:padding="@dimen/base_14"
-                android:src="@drawable/ic_message_black_24dp"/>
+                android:src="@mipmap/chat" />
 
             <TextView
                 android:id="@+id/abc3"
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/i3"
-                android:text="Gop y"
+                android:text="Góp ý"
                 android:textSize="@dimen/base_16"/>
 
         </RelativeLayout>
@@ -117,7 +117,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:padding="@dimen/base_14"
-                android:src="@drawable/ic_share_black_24dp"/>
+                android:src="@mipmap/share" />
 
             <TextView
                 android:id="@+id/abc4"
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/i4"
-                android:text="Chia se"
+                android:text="Chia sẻ"
                 android:textSize="@dimen/base_16"/>
 
         </RelativeLayout>
@@ -149,7 +149,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:padding="@dimen/base_14"
-                android:src="@drawable/ic_settings_black_24dp"/>
+                android:src="@mipmap/if_setting" />
 
             <TextView
                 android:id="@+id/abc5"
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/i5"
-                android:text="Cai dat"
+                android:text="Cài đặt"
                 android:textSize="@dimen/base_16"/>
         </RelativeLayout>
     </RelativeLayout>

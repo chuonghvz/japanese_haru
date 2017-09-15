@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -73,7 +75,7 @@ public class HomeFragment extends Fragment {
 //         Create an ArrayAdapter using the string array and a default spinner
         ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
                 .createFromResource(getActivity().getApplicationContext(), R.array.level_array,
-                        android.R.layout.simple_spinner_dropdown_item);
+                        android.R.layout.simple_dropdown_item_1line);
 
         // Specify the layout to use when the list of choices appears
         staticAdapter
@@ -81,6 +83,18 @@ public class HomeFragment extends Fragment {
 
         // Apply the adapter to the spinner
         staticSpinner.setAdapter(staticAdapter);
+        staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                Log.v("item", (String) parent.getItemAtPosition(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
         return v;
     }
 

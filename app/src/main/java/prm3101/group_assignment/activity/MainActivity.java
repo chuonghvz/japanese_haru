@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.fragment.HomeFragment;
 import prm3101.group_assignment.fragment.JLPTFragment;
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
-
+    private ArrayList navDrawerItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, new HomeFragment()).commit();
         setNavigationViewListner();
+
 
     }
 
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             }
-            case R.id.word_list: {
+            case R.id.word_major: {
                 fragmentManager.beginTransaction().replace(R.id.content, new WordListFragment()).commit();
                 break;
             }

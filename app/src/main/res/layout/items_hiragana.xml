@@ -8,13 +8,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/hira"
         android:textColor="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
         android:textSize="@dimen/base_20"
-        android:text="あ"/>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/hira"
         android:id="@+id/romaji"
         android:layout_centerHorizontal="true"
-        android:text="a"/>
+        />
 </RelativeLayout>

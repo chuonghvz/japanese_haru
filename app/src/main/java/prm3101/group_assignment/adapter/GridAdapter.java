@@ -45,31 +45,16 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-//        View gridView = convertView;
-//        if(convertView == null){
-//            mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            gridView = mInflater.inflate(R.layout.items_hiragana, null);
-//        }
-//        TextView hira = (TextView) gridView.findViewById(R.id.hira);
-//        TextView romaji = (TextView) gridView.findViewById(R.id.romaji);
-//        hira.setText(hiras[position]);
-////        romaji.setText(romajis[position]);
-//        return gridView;
-//    }
-        View gridView;
-        LayoutInflater inflater = (LayoutInflater) mContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (convertView == null) {
-            gridView = new View(mContext);
-            gridView = inflater.inflate(R.layout.items_hiragana, null);
-            TextView hira = (TextView) gridView.findViewById(R.id.hira);
-            TextView kata = (TextView) gridView.findViewById(R.id.romaji);
-            hira.setText(hiras.get(position)[0]);
-            kata.setText(hiras.get(position)[1]);
-
-        } else {
-            gridView = (View) convertView;
+        View gridView = convertView;
+        if(convertView == null){
+            mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            gridView = mInflater.inflate(R.layout.items_hiragana, null);
         }
+        TextView hira = (TextView) gridView.findViewById(R.id.hira);
+        TextView romaji = (TextView) gridView.findViewById(R.id.romaji);
+        hira.setText(hiras.get(position)[0]);
+        romaji.setText(hiras.get(position)[1]);
         return gridView;
     }
+
 }

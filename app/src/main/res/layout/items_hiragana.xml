@@ -9,8 +9,14 @@
         android:id="@+id/hira"
         android:textColor="@color/colorPrimaryDark"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/base_20"
+        android:textSize="@dimen/base_28"
         />
+    <View
+        android:layout_width="fill_parent"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_height="1dp"
+        android:background="@color/grey_line" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

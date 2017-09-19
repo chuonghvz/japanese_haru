@@ -7,8 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import prm3101.group_assignment.R;
+import prm3101.group_assignment.adapter.GridAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +28,23 @@ public class KataFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static ArrayList<String[]> plainHiragana = new ArrayList<String[]>(Arrays.asList(new String[][]{
+            {"ア", "a"},{"イ", "i"},{"ウ", "u"},{"エ", "e"},{"オ", "o"},
+            {"カ", "ka"},{"キ", "ki"},{"ク", "ku"},{"ケ", "ke"},{"コ", "ko"},
+            {"サ", "sa"},{"シ", "shi"},{"ス", "su"},{"セ", "se"},{"ソ", "so"},
+            {"タ", "ta"},{"チ", "chi"},{"ツ", "tsu"},{"テ", "te"},{"ト", "to"},
+            {"ナ", "na"},{"ニ", "ni"},{"ヌ", "nu"},{"ネ", "ne"},{"ノ", "no"},
+            {"ハ", "ha"},{"ヒ", "hi"},{"フ", "fu"},{"ヘ", "he"},{"ホ", "ho"},
+            {"マ", "ma"},{"ミ", "mi"},{"ム", "mu"},{"メ", "me"},{"モ", "mo"},
+            {"ヤ", "ya"},{"",""},{"ユ", "yu"},{"",""},{"ヨ", "yo"},
+            {"ラ", "ra"},{"リ", "ri"},{"ル", "ru"},{"レ", "re"},{"ロ", "ro"},
+            {"ワ", "wa"},{"",""},{"",""},{"",""},{"ヲ", "wo"},
+            {"ン", "n"},{"",""},{"",""},{"",""},{"",""},
+            {"ガ", "ga"},{"ギ", "gi"},{"グ", "gu"},{"ゲ", "ge"},{"ゴ", "go"},
+            {"ザ", "za"},{"ジ", "ji"},{"ズ", "zu"},{"ゼ", "ze"},{"ゾ", "zo"},
+            {"ダ", "da"},{"ヂ", "ji"},{"ヅ", "zu"},{"デ", "de"},{"ド", "do"},
+            {"バ", "ba"},{"ビ", "bi"},{"ブ", "bu"},{"ベ", "be"},{"ボ", "bo"},
+            {"パ", "pa"},{"ピ", "pi"},{"プ", "pu"},{"ペ", "pe"},{"ポ", "po"}}));
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,7 +87,19 @@ public class KataFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_fragment2, container, false);
+        View frag1 = inflater.inflate(R.layout.fragment_tab_fragment1, container, false);
+        GridView mGridView = (GridView) frag1.findViewById(R.id.gridView);
+        GridAdapter adapter = new GridAdapter(plainHiragana, getActivity().getApplicationContext());
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
+//                android.R.layout.simple_list_item_1, hiraganaList);
+        mGridView.setAdapter(adapter);
+//        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                //Add detail - To do later
+//            }
+//        });
+        return frag1;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

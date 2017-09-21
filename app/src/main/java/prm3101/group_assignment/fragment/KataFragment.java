@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import prm3101.group_assignment.R;
-import prm3101.group_assignment.adapter.GridAdapter;
+import prm3101.group_assignment.adapter.HiraganaAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -89,7 +89,7 @@ public class KataFragment extends Fragment {
         // Inflate the layout for this fragment
         View frag1 = inflater.inflate(R.layout.fragment_tab_fragment1, container, false);
         GridView mGridView = (GridView) frag1.findViewById(R.id.gridView);
-        GridAdapter adapter = new GridAdapter(plainHiragana, getActivity().getApplicationContext());
+        HiraganaAdapter adapter = new HiraganaAdapter(plainHiragana, getActivity().getApplicationContext());
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
 //                android.R.layout.simple_list_item_1, hiraganaList);
         mGridView.setAdapter(adapter);

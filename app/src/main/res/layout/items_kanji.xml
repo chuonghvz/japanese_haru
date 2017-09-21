@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/kanjiItem">
+    <TextView
+        android:id="@+id/kanji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/base_16"
+        android:textColor="@color/red"
+        android:layout_marginTop="@dimen/base_10"
+        android:layout_marginLeft="@dimen/base_10"/>
+    <TextView
+        android:id="@+id/kanjiMeaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/kanji"
+        android:layout_marginTop="@dimen/base_10"
+        android:layout_marginLeft="@dimen/base_10"
+        android:textSize="@dimen/base_16"/>
+</RelativeLayout>

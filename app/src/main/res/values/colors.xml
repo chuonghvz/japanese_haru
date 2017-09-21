@@ -7,6 +7,7 @@
     <color name="white">#FFF</color>
     <color name="colorAccent">#FF4081</color>
     <color name="grey">#ececec</color>
-    <color name="grey_line">#777373</color>
+    <color name="grey_line">#bebebe</color>
     <color name="bg_activity">#ededed</color>
+    <color name="red">#ff0000</color>
 </resources>

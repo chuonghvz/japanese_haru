@@ -22,8 +22,20 @@
         android:layout_marginRight="@dimen/base_10"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
+        android:inputType="text"
+        android:imeOptions="actionSearch"
         android:layout_marginTop="10dp"
         android:textAppearance="@style/largeEdittextText"
         android:background="@drawable/rounded_edittext"/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_below="@+id/inputSearch"
+        android:layout_marginLeft="@dimen/base_10"
+        android:layout_marginRight="@dimen/base_10"
+        android:layout_marginTop="@dimen/base_10">
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

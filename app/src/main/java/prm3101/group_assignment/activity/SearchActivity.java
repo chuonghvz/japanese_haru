@@ -3,19 +3,20 @@ package prm3101.group_assignment.activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import prm3101.group_assignment.R;
+import prm3101.group_assignment.adapter.KanjiAdapter;
+import prm3101.group_assignment.data.Kanji;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -46,21 +47,41 @@ public class SearchActivity extends AppCompatActivity {
         });
         //Read Json file
         Log.e(TAG, "-----------------------------------------------");
-        try {
-            JSONObject obj = new JSONObject(loadJSONFromAsset());
-            JSONArray m_jArry = obj.getJSONArray("KanjiData");
-            for (int i = 0; i < m_jArry.length(); i++) {
-                JSONObject jo_inside = m_jArry.getJSONObject(i);
-//                Get meaning string
-//                Log.e(TAG, jo_inside.getJSONObject("kanji").getJSONObject("meaning").getString("english"));
-                if (jo_inside.getJSONObject("kanji").getJSONObject("meaning").getString("english")
-                        .equalsIgnoreCase("eat")) {
-                    Log.e(TAG, jo_inside.getJSONObject("kanji").getString("character"));
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            JSONObject obj = new JSONObject(loadJSONFromAsset());
+//            JSONArray m_jArry = obj.getJSONArray("KanjiData");
+//            for (int i = 0; i < m_jArry.length(); i++) {
+//                JSONObject jo_inside = m_jArry.getJSONObject(i);
+////                Get meaning string
+////                Log.e(TAG, jo_inside.getJSONObject("kanji").getJSONObject("meaning").getString("english"));
+//                if (jo_inside.getJSONObject("kanji").getJSONObject("meaning").getString("english")
+//                        .equalsIgnoreCase("eat")) {
+//                    Log.e(TAG, jo_inside.getJSONObject("kanji").getString("character"));
+//                }
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.searchResult);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+        // Tạo dữ liệu để hiển thị lên Listview
+        ArrayList<Kanji> data = new ArrayList<>();
+        Kanji test = new Kanji("abc", "abc", "abc", "abc");
+        Kanji test2 = new Kanji("abc", "abc", "abc", "abc");
+        Kanji test3 = new Kanji("abc", "abc", "abc", "abc");
+        Kanji test4 = new Kanji("abc", "abc", "abc", "abc");
+        Kanji test5 = new Kanji("abc", "abc", "abc", "abc");
+        Kanji test6 = new Kanji("abc", "abc", "abc", "abc");
+        data.add(test);
+        data.add(test2);
+        data.add(test3);
+        data.add(test4);
+        data.add(test5);
+        data.add(test6);
+        // Tạo đối tượng adapter và set adapter cho ListView
+        KanjiAdapter adapter = new KanjiAdapter(SearchActivity.this, data);
+        recyclerView.setAdapter(adapter);
     }
 
     public String loadJSONFromAsset() {

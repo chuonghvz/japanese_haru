@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -45,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, new BasicFragment()).commit();
         setNavigationViewListner();
-
-
     }
 
 
@@ -96,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.basic: {
                 fragmentManager.beginTransaction().replace(R.id.content, new BasicFragment()).commit();
+                Toast.makeText(this, "aaaa", Toast.LENGTH_LONG).show();
                 break;
             }
             case R.id.search_word: {

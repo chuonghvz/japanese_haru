@@ -9,7 +9,7 @@
     tools:context="prm3101.group_assignment.activity.SearchActivity">
 
     <include android:id="@+id/toolbar"
-             layout="@layout/toolbar_search" />
+             layout="@layout/toolbar" />
 
     <EditText
         android:id="@+id/inputSearch"
@@ -17,7 +17,7 @@
         android:layout_height="38dp"
         android:drawableLeft="@android:drawable/ic_menu_search"
         android:drawablePadding="@dimen/base_8"
-        android:hint="Search"
+        android:hint="Input word to search"
         android:layout_marginLeft="@dimen/base_10"
         android:layout_marginRight="@dimen/base_10"
         android:layout_below="@+id/toolbar"
@@ -27,6 +27,7 @@
         android:layout_marginTop="10dp"
         android:textAppearance="@style/largeEdittextText"
         android:background="@drawable/rounded_edittext"/>
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/searchResult"

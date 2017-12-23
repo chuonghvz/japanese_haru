@@ -19,6 +19,6 @@
         android:layout_toRightOf="@+id/kanji"
         android:layout_marginTop="@dimen/base_10"
         android:layout_marginBottom="@dimen/base_10"
-        android:layout_marginLeft="@dimen/base_10"
+        android:layout_marginLeft="15dp"
         android:textSize="@dimen/base_16"/>
 </RelativeLayout>

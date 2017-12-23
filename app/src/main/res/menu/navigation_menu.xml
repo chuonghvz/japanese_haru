@@ -4,19 +4,14 @@
     <item
         android:id="@+id/basic"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Kiến thức cơ bản" />
+        android:title="Home" />
+
     <item android:id="@+id/search_word"
-          android:icon="@drawable/ic_home_black_24dp"
-        android:title="Tra từ"/>
-    <item android:id="@+id/jlpt"
-          android:icon="@drawable/ic_account_circle_black_24dp"
-          android:title="JLPT"/>
-    <item
-        android:id="@+id/word_topic"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="Từ chủ đề" />
+          android:icon="@drawable/ic_search_black_24dp"
+          android:title="Search"/>
+
     <item
         android:id="@+id/translate"
-        android:icon="@mipmap/translate"
-        android:title="Dịch văn bản" />
+        android:icon="@drawable/ic_language_translate"
+        android:title="Translate" />
 </menu>

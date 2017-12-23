@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/base_8"
         android:id="@+id/hira"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimaryDark_v2"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/base_28"
         />

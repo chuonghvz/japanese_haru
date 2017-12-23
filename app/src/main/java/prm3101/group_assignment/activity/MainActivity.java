@@ -2,8 +2,6 @@ package prm3101.group_assignment.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -19,8 +17,6 @@ import java.util.ArrayList;
 
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.fragment.BasicFragment;
-import prm3101.group_assignment.fragment.JLPTFragment;
-import prm3101.group_assignment.fragment.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
@@ -34,46 +30,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
-        mToolbar.setTitle("Kiến thức cơ bản");
+        mToolbar.setTitle(R.string.home);
         setSupportActionBar(mToolbar);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.temp, R.string.temp);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, new BasicFragment()).commit();
         setNavigationViewListner();
     }
 
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            switch (item.getItemId()) {
-                case R.id.bottom_home:
-                    transaction.replace(R.id.content, new BasicFragment()).commit();
-                    mToolbar.setTitle("Kiến thức cơ bản");
-                    return true;
-                case R.id.bottom_search:
-                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-                    startActivity(intent);
-                    return true;
-                case R.id.bottom_profile:
-                    transaction.replace(R.id.content, new ProfileFragment()).commit();
-                    mToolbar.setTitle("Tôi");
-                    return true;
-            }
-            return false;
-        }
-
-    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -83,38 +51,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    //    public void setting(View view) {
-//        Intent intent = new Intent(this, SettingsActivity.class);
-//        startActivity(intent);
-//    }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch (item.getItemId()) {
-
             case R.id.basic: {
                 fragmentManager.beginTransaction().replace(R.id.content, new BasicFragment()).commit();
-                Toast.makeText(this, "aaaa", Toast.LENGTH_LONG).show();
                 break;
             }
+
             case R.id.search_word: {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 startActivity(intent);
                 break;
             }
-            case R.id.jlpt: {
-                fragmentManager.beginTransaction().replace(R.id.content, new JLPTFragment()).commit();
-                break;
-            }
-            case R.id.word_topic: {
-                break;
-            }
+
             case R.id.translate: {
                 Intent intent = new Intent(getApplicationContext(), TranslateActivity.class);
                 startActivity(intent);
                 break;
             }
+
             default:
                 break;
         }
@@ -127,6 +86,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void setNavigationViewListner() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 }

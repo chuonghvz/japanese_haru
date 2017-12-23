@@ -1,20 +1,20 @@
 package prm3101.group_assignment.data;
 
+import java.io.Serializable;
+
 /**
  * Created by ASUS on 21/09/2017.
  */
 
-public class Kanji {
+public class Kanji implements Serializable{
     private String kanji;
     private String meaning;
-    private String kanjiImage;
-    private String kanjiSound;
+    private String kanjiData;
 
-    public Kanji(String kanji, String meaning, String kanjiImage, String kanjiSound) {
+    public Kanji(String kanji, String meaning, String kanjiData) {
         this.kanji = kanji;
         this.meaning = meaning;
-        this.kanjiImage = kanjiImage;
-        this.kanjiSound = kanjiSound;
+        this.kanjiData = kanjiData;
     }
 
     public String getKanji() {
@@ -33,19 +33,12 @@ public class Kanji {
         this.meaning = meaning;
     }
 
-    public String getKanjiImage() {
-        return kanjiImage;
+    public String getKanjiData() {
+        return kanjiData;
     }
 
-    public void setKanjiImage(String kanjiImage) {
-        this.kanjiImage = kanjiImage;
+    public void setKanjiData(String kanjiData) {
+        this.kanjiData = kanjiData;
     }
 
-    public String getKanjiSound() {
-        return kanjiSound;
-    }
-
-    public void setKanjiSound(String kanjiSound) {
-        this.kanjiSound = kanjiSound;
-    }
 }

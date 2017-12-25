@@ -66,7 +66,7 @@ public class HiraFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_hira_kata, container, false);
-        GridView mGridView = (GridView) v.findViewById(R.id.gridView);
+        final GridView mGridView = (GridView) v.findViewById(R.id.gridView);
         HiraganaAdapter adapter = new HiraganaAdapter(plainHiragana, getActivity().getApplicationContext());
         mGridView.setAdapter(adapter);
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

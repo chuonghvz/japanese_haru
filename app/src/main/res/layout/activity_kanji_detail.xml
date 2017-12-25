@@ -81,17 +81,6 @@
                 android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/onRead"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/onHira"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:text="Onyomi"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
-
-            <TextView
                 android:id="@+id/kuLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,6 +109,17 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:id="@+id/onRead"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/onHira"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:text="Onyomi"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <TextView
                 android:id="@+id/kuRead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -135,10 +135,10 @@
                 android:id="@+id/exLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/onRead"
-                android:layout_marginLeft="8dp"
+                android:layout_alignStart="@+id/exampleList"
+                android:layout_below="@+id/kuRead"
+                android:layout_marginTop="12dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="10dp"
                 android:background="@color/grey"
                 android:text="Example"
                 android:textColor="@color/black"

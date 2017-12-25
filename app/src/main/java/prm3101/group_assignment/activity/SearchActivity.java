@@ -27,12 +27,15 @@ import java.util.Arrays;
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.adapter.KanjiAdapter;
 import prm3101.group_assignment.data.Kanji;
+import prm3101.group_assignment.util.Utils;
 
 public class SearchActivity extends AppCompatActivity {
 
     private final String TAG = "SearchActivity";
     private TextView mToolbarText, mSearchValue;
     private Toolbar mToolbar;
+    private RecyclerView recyclerView;
+    private Utils utils = new Utils();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,72 +49,19 @@ public class SearchActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        //Search Function
+        recyclerView = (RecyclerView) findViewById(R.id.searchResult);
         mSearchValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
-                    performSearch();
+                    utils.searchKanji(recyclerView, mSearchValue, SearchActivity.this);
                     return true;
                 }
                 return false;
             }
         });
 
-    }
-
-    private void performSearch() {
-        mSearchValue.clearFocus();
-        InputMethodManager in = (InputMethodManager) getSystemService(SearchActivity.INPUT_METHOD_SERVICE);
-        in.hideSoftInputFromWindow(mSearchValue.getWindowToken(), 0);
-
-        // Search method
-        String searchValue = mSearchValue.getText().toString().trim();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.searchResult);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchActivity.this);
-        recyclerView.setLayoutManager(layoutManager);
-        ArrayList<Kanji> data = new ArrayList<>();
-        KanjiAdapter adapter = new KanjiAdapter(SearchActivity.this, data);
-
-        if (searchValue.isEmpty()) {
-            Toast.makeText(SearchActivity.this, R.string.no_result, Toast.LENGTH_LONG);
-        } else {
-            try {
-                JSONObject obj = new JSONObject(loadJSONFromAsset());
-                JSONArray m_jArry = obj.getJSONArray("KanjiData");
-                for (int i = 0; i < m_jArry.length(); i++) {
-                    JSONObject kanjiData = m_jArry.getJSONObject(i);
-                    if (kanjiData.getJSONObject("kanji").getJSONObject("meaning").getString("english")
-                            .contains(searchValue) || kanjiData.getJSONObject("kanji").getJSONObject("meaning")
-                            .getString("english").equalsIgnoreCase(searchValue)) {
-                        Kanji test = new Kanji(kanjiData.getJSONObject("kanji").getString("character"),
-                                kanjiData.getJSONObject("kanji").getJSONObject("meaning").getString("english"),
-                                kanjiData.toString());
-                        data.add(test);
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        recyclerView.setAdapter(adapter);
-    }
-
-
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = SearchActivity.this.getAssets().open("response.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
     }
 
 

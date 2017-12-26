@@ -64,7 +64,7 @@
             android:layout_marginTop="10dp">
 
             <ImageView
-                android:id="@+id/volume"
+                android:id="@+id/inputVolume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:layout_toRightOf="@id/volume"
+                android:layout_toRightOf="@id/inputVolume"
                 android:text="English"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
@@ -91,7 +91,7 @@
 
 
         <EditText
-            android:id="@+id/textToTranslate"
+            android:id="@+id/inputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/result"
@@ -104,7 +104,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textToTranslate"
+            android:layout_below="@id/inputText"
             android:background="@color/grey">
 
             <ImageView
@@ -164,7 +164,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:backgroundTint="@android:color/transparent"
-            android:text="output text"
+            android:text=""
             android:textSize="16dp" />
 
     </RelativeLayout>

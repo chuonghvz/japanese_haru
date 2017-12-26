@@ -67,7 +67,7 @@ public class Utils {
                     String meanOfKanji = kanjiData.getJSONObject("kanji").getJSONObject("meaning")
                             .getString("english");
                     String character = kanjiData.getJSONObject("kanji").getString("character");
-                    if (meanOfKanji.contains(searchValue) || meanOfKanji.equalsIgnoreCase(searchValue)) {
+                    if (meanOfKanji.contains(searchValue)|| meanOfKanji.equalsIgnoreCase(searchValue)) {
                         Kanji result = new Kanji(character, meanOfKanji, kanjiData.toString());
                         data.add(result);
                     }

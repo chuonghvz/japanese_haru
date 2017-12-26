@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +42,24 @@ public class HiraFragment extends Fragment {
             {"ば", "ba"}, {"び", "bi"}, {"ぶ", "bu"}, {"べ", "be"}, {"ぼ", "bo"},
             {"ぱ", "pa"}, {"ぴ", "pi"}, {"ぷ", "pu"}, {"ぺ", "pe"}, {"ぽ", "po"}}));
 
+    private static ArrayList<String[]> plainKatakana = new ArrayList<String[]>(Arrays.asList(new String[][]{
+            {"ア", "a"},{"イ", "i"},{"ウ", "u"},{"エ", "e"},{"オ", "o"},
+            {"カ", "ka"},{"キ", "ki"},{"ク", "ku"},{"ケ", "ke"},{"コ", "ko"},
+            {"サ", "sa"},{"シ", "shi"},{"ス", "su"},{"セ", "se"},{"ソ", "so"},
+            {"タ", "ta"},{"チ", "chi"},{"ツ", "tsu"},{"テ", "te"},{"ト", "to"},
+            {"ナ", "na"},{"ニ", "ni"},{"ヌ", "nu"},{"ネ", "ne"},{"ノ", "no"},
+            {"ハ", "ha"},{"ヒ", "hi"},{"フ", "fu"},{"ヘ", "he"},{"ホ", "ho"},
+            {"マ", "ma"},{"ミ", "mi"},{"ム", "mu"},{"メ", "me"},{"モ", "mo"},
+            {"ヤ", "ya"},{"",""},{"ユ", "yu"},{"",""},{"ヨ", "yo"},
+            {"ラ", "ra"},{"リ", "ri"},{"ル", "ru"},{"レ", "re"},{"ロ", "ro"},
+            {"ワ", "wa"},{"",""},{"",""},{"",""},{"ヲ", "wo"},
+            {"ン", "n"},{"",""},{"",""},{"",""},{"",""},
+            {"ガ", "ga"},{"ギ", "gi"},{"グ", "gu"},{"ゲ", "ge"},{"ゴ", "go"},
+            {"ザ", "za"},{"ジ", "ji"},{"ズ", "zu"},{"ゼ", "ze"},{"ゾ", "zo"},
+            {"ダ", "da"},{"ヂ", "ji"},{"ヅ", "zu"},{"デ", "de"},{"ド", "do"},
+            {"バ", "ba"},{"ビ", "bi"},{"ブ", "bu"},{"ベ", "be"},{"ボ", "bo"},
+            {"パ", "pa"},{"ピ", "pi"},{"プ", "pu"},{"ペ", "pe"},{"ポ", "po"}}));
+
     private OnFragmentInteractionListener mListener;
     private TextToSpeech speech;
 
@@ -67,8 +87,35 @@ public class HiraFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_hira_kata, container, false);
         final GridView mGridView = (GridView) v.findViewById(R.id.gridView);
-        HiraganaAdapter adapter = new HiraganaAdapter(plainHiragana, getActivity().getApplicationContext());
-        mGridView.setAdapter(adapter);
+        Spinner dropdown = (Spinner) v.findViewById(R.id.spinner);
+        String[] items = new String[]{"Hiragana", "Katakana"};
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(spinnerAdapter);
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        HiraganaAdapter hiragana = new HiraganaAdapter(plainHiragana,
+                                getActivity().getApplicationContext());
+                        mGridView.setAdapter(hiragana);
+                        break;
+                    case 1:
+                        HiraganaAdapter adapter = new HiraganaAdapter(plainKatakana,
+                                getActivity().getApplicationContext());
+                        mGridView.setAdapter(adapter);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        // Speech text
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

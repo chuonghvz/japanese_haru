@@ -7,7 +7,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,7 +54,7 @@ public class BasicFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(new HiraFragment(), "Hiragana");
-        adapter.addFragment(new KataFragment(), "Katakana");
+        adapter.addFragment(new KanjiFragment(), "Kanji");
         adapter.addFragment(new SearchFragment(), "Search");
         viewPager.setAdapter(adapter);
     }

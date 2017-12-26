@@ -3,6 +3,7 @@ package prm3101.group_assignment.util;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,7 +67,11 @@ public class Utils {
                     JSONObject kanjiData = AllKanji.getJSONObject(i);
                     String meanOfKanji = kanjiData.getJSONObject("kanji").getJSONObject("meaning")
                             .getString("english");
+                    String level = kanjiData.getJSONObject("references").getString("grade");
                     String character = kanjiData.getJSONObject("kanji").getString("character");
+                    if (level.equalsIgnoreCase("1")){
+                        Log.e("aaaa", character);
+                    }
                     if (meanOfKanji.contains(searchValue)|| meanOfKanji.equalsIgnoreCase(searchValue)) {
                         Kanji result = new Kanji(character, meanOfKanji, kanjiData.toString());
                         data.add(result);
@@ -80,3 +85,7 @@ public class Utils {
         recyclerView.setAdapter(adapter);
     }
 }
+
+
+
+

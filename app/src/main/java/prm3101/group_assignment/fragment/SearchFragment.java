@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ import prm3101.group_assignment.util.Utils;
 
 
 public class SearchFragment extends Fragment {
-    private TextView mSearchValue;
+    private EditText mSearchValue;
     private RecyclerView recyclerView;
     private OnFragmentInteractionListener mListener;
     private Utils utils = new Utils();
@@ -60,7 +61,7 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.searchResult);
-        mSearchValue = (TextView) v.findViewById(R.id.inputSearch);
+        mSearchValue = (EditText) v.findViewById(R.id.inputSearch);
         mSearchValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {

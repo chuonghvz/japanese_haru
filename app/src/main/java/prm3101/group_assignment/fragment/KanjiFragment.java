@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,12 +27,15 @@ import prm3101.group_assignment.adapter.HiraganaAdapter;
 import prm3101.group_assignment.adapter.KanjiAdapter;
 import prm3101.group_assignment.adapter.KanjiLevelAdapter;
 import prm3101.group_assignment.data.Kanji;
+import prm3101.group_assignment.data.KanjiLevel;
+import prm3101.group_assignment.util.Utils;
 
 
 public class KanjiFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private RecyclerView mKanjiLevel;
+    private Utils utils = new Utils();
 
     public KanjiFragment() {
         // Required empty public constructor
@@ -52,6 +60,8 @@ public class KanjiFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_kanji, container, false);
         Spinner dropdown = (Spinner) v.findViewById(R.id.spinner);
         mKanjiLevel = (RecyclerView) v.findViewById(R.id.kanjiLevel);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        mKanjiLevel.setLayoutManager(layoutManager);
         String[] items = new String[]{"N5", "N4", "N3", "N2", "N1"};
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_dropdown_item, items);
@@ -61,10 +71,31 @@ public class KanjiFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-
+                        KanjiLevelAdapter N5_adapter = new KanjiLevelAdapter(getContext(),
+                                utils.getKanjiLevel(getContext()).get("N5_level"));
+                        mKanjiLevel.setAdapter(N5_adapter);
                         break;
                     case 1:
-
+                        KanjiLevelAdapter N4_adapter = new KanjiLevelAdapter(getContext(),
+                                utils.getKanjiLevel(getContext()).get("N4_level"));
+                        mKanjiLevel.setAdapter(N4_adapter);
+                        break;
+                    case 2:
+                        KanjiLevelAdapter N3_adapter = new KanjiLevelAdapter(getContext(),
+                                utils.getKanjiLevel(getContext()).get("N3_level"));
+                        mKanjiLevel.setAdapter(N3_adapter);
+                        break;
+                    case 3:
+                        KanjiLevelAdapter N2_adapter = new KanjiLevelAdapter(getContext(),
+                                utils.getKanjiLevel(getContext()).get("N2_level"));
+                        mKanjiLevel.setAdapter(N2_adapter);
+                        break;
+                    case 4:
+                        KanjiLevelAdapter N1_adapter = new KanjiLevelAdapter(getContext(),
+                                utils.getKanjiLevel(getContext()).get("N1_level"));
+                        mKanjiLevel.setAdapter(N1_adapter);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -74,20 +105,6 @@ public class KanjiFragment extends Fragment {
 
             }
         });
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        mKanjiLevel.setLayoutManager(layoutManager);
-        ArrayList<Integer> data = new ArrayList<>();
-        data.add(1);
-        data.add(1);
-        data.add(1);
-        data.add(1);
-        data.add(1);
-        data.add(1);
-        data.add(1);
-        data.add(1);
-        data.add(1);
-        KanjiLevelAdapter adapter = new KanjiLevelAdapter(getContext(), data);
-        mKanjiLevel.setAdapter(adapter);
         return v;
     }
 

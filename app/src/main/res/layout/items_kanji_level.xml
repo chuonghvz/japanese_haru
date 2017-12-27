@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <TextView
-            android:id="@+id/number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            android:text="1."
-            android:textColor="@color/grey"
-            android:textSize="16dp" />
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/character"
@@ -24,35 +15,19 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
             android:text="一"
             android:textColor="@color/red"
             android:textSize="24dp" />
-
-
-        <ImageView
-            android:id="@+id/volume"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_volume_up_black_24dp" />
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@+id/character"
-            android:background="@color/grey_line" />
 
         <TextView
             android:id="@+id/meanLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/view"
+            android:layout_marginTop="4dp"
+            android:textStyle=""
+            android:layout_toRightOf="@id/character"
             android:text="mean:"
             android:textSize="16dp" />
 
@@ -61,7 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/black"
             android:layout_toRightOf="@id/meanLabel"
             android:text="aaaaaaaaaaaa"
             android:textSize="16dp" />
@@ -70,9 +47,9 @@
             android:id="@+id/onLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/meanLabel"
+            android:layout_below="@id/meanValue"
             android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@id/view"
+            android:layout_toRightOf="@id/character"
             android:text="on:"
             android:textSize="16dp" />
 
@@ -82,7 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/meanValue"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="40dp"
             android:layout_toRightOf="@id/onLabel"
+            android:textColor="@color/colorPrimaryDark_v2"
             android:text="bbbbbbbbbbbbb"
             android:textSize="16dp" />
 
@@ -90,9 +69,9 @@
             android:id="@+id/kunLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/onLabel"
+            android:layout_below="@id/onValue"
             android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@id/view"
+            android:layout_toRightOf="@id/character"
             android:text="kun:"
             android:textSize="16dp" />
 
@@ -102,108 +81,21 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/onValue"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="40dp"
             android:layout_toRightOf="@id/kunLabel"
             android:text="cccccccccccccccc"
-            android:textSize="16dp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp"
+            android:layout_marginBottom="8dp"/>
 
-        <TextView
-            android:id="@+id/exLabel"
+        <ImageView
+            android:id="@+id/volume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/kunLabel"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/view"
-            android:text="Example:"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/ex1_1"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/exLabel"
-            android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@id/view"
-            android:text="bbbbbbbbbbb"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/ex1_2"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/exLabel"
-            android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@id/ex1_1"
-            android:text="bbbbbbbbbbb"
-            android:textSize="16dp" />
-
-        <View
-            android:id="@+id/line1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/ex1_1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_toRightOf="@id/view"
-            android:background="@color/grey_line" />
-
-        <TextView
-            android:id="@+id/ex2_1"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_toRightOf="@id/view"
-            android:text="bbbbbbbbbbb"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/ex2_2"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_toRightOf="@id/ex1_1"
-            android:text="bbbbbbbbbbb"
-            android:textSize="16dp" />
-
-        <View
-            android:id="@+id/line2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/ex2_1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_toRightOf="@id/view"
-            android:background="@color/grey_line" />
-
-        <TextView
-            android:id="@+id/ex3_1"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line2"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_toRightOf="@id/view"
-            android:text="bbbbbbbbbbb"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/ex3_2"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line2"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_toRightOf="@id/ex3_1"
-            android:text="bbbbbbbbbbb"
-            android:textSize="16dp" />
+            android:src="@drawable/ic_volume_up_black_24dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"/>
 
     </RelativeLayout>
 

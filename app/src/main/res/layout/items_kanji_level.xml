@@ -10,6 +10,16 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/grey_line"
+            android:textSize="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
             android:id="@+id/character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,14 +98,38 @@
             android:textSize="16dp"
             android:layout_marginBottom="8dp"/>
 
-        <ImageView
-            android:id="@+id/volume"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_volume_up_black_24dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/bookmark_uncheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star_border_black_24dp"
+                android:layout_alignParentRight="true" />
+
+            <ImageView
+                android:id="@+id/bookmark_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:src="@drawable/ic_star"
+                android:layout_alignParentRight="true" />
+
+            <ImageView
+                android:id="@+id/volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_volume_up_black_24dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="40dp" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

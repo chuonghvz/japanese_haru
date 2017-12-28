@@ -1,11 +1,13 @@
 package prm3101.group_assignment.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,11 +64,15 @@ public class SearchFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_search, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.searchResult);
         mSearchValue = (EditText) v.findViewById(R.id.inputSearch);
+        // Get data from BasicFragment
+        SharedPreferences prefs = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String data = prefs.getString("All_KANJI", null);
+        final JSONArray AllKanji = utils.convertDataToSearch(data);
         mSearchValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
-                    utils.searchKanji(recyclerView, mSearchValue, getContext());
+                    utils.searchKanji(recyclerView, mSearchValue, AllKanji, getContext());
                     return true;
                 }
                 return false;

@@ -28,8 +28,8 @@ import prm3101.group_assignment.data.KanjiLevel;
 
 public class Utils {
 
-    // Read file json
-    public String loadJSONFromAsset(Context context) {
+    // Read file json and Convert data tpo search
+    public String readJSONdata(Context context) {
         String json = null;
         try {
             InputStream is = context.getAssets().open("response.json");
@@ -38,15 +38,29 @@ public class Utils {
             is.read(buffer);
             is.close();
             json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
         return json;
     }
 
+    // Convert data to search
+    public JSONArray convertDataToSearch(String json) {
+        JSONObject obj = null;
+        JSONArray AllKanji = null;
+        try {
+            obj = new JSONObject(json);
+            AllKanji = obj.getJSONArray("KanjiData");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return AllKanji;
+    }
+
     //Search Kanji
-    public void searchKanji(RecyclerView recyclerView, EditText searchView, Context context) {
+    public void searchKanji(RecyclerView recyclerView, EditText searchView, JSONArray AllKanji, Context context) {
         searchView.clearFocus();
         InputMethodManager in = (InputMethodManager) context.getSystemService(SearchActivity.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
@@ -57,13 +71,10 @@ public class Utils {
         recyclerView.setLayoutManager(layoutManager);
         ArrayList<Kanji> data = new ArrayList<>();
         KanjiAdapter adapter = new KanjiAdapter(context, data);
-
         if (searchValue.isEmpty()) {
             Toast.makeText(context, R.string.no_result, Toast.LENGTH_LONG);
         } else {
             try {
-                JSONObject obj = new JSONObject(loadJSONFromAsset(context));
-                JSONArray AllKanji = obj.getJSONArray("KanjiData");
                 for (int i = 0; i < AllKanji.length(); i++) {
                     JSONObject kanjiData = AllKanji.getJSONObject(i);
                     String meanOfKanji = kanjiData.getJSONObject("kanji").getJSONObject("meaning")
@@ -78,12 +89,11 @@ public class Utils {
                 e.printStackTrace();
             }
         }
-
         recyclerView.setAdapter(adapter);
     }
 
     // Get Kanji each level
-    public HashMap<String, ArrayList<KanjiLevel>> getKanjiLevel(Context context) {
+    public HashMap<String, ArrayList<KanjiLevel>> getKanjiLevel(Context context, JSONArray AllKanji) {
         ArrayList<KanjiLevel> N4_level = new ArrayList<>();
         ArrayList<KanjiLevel> N3_level = new ArrayList<>();
         ArrayList<KanjiLevel> N2_level = new ArrayList<>();
@@ -91,8 +101,6 @@ public class Utils {
         ArrayList<KanjiLevel> N5_level = new ArrayList<>();
         HashMap<String, ArrayList<KanjiLevel>> result = new HashMap<>();
         try {
-            JSONObject obj = new JSONObject(loadJSONFromAsset(context));
-            JSONArray AllKanji = obj.getJSONArray("KanjiData");
             for (int i = 0; i < AllKanji.length(); i++) {
                 JSONObject kanjiData = AllKanji.getJSONObject(i);
                 String level = kanjiData.getJSONObject("references").getString("grade");
@@ -106,12 +114,7 @@ public class Utils {
                 String kunyomi = kanjiData.getJSONObject("kanji").getJSONObject("kunyomi")
                         .getString("hiragana") + " (" +
                         kanjiData.getJSONObject("kanji").getJSONObject("kunyomi").getString("romaji") + ")";
-                String ex_1_hira = "a";
-                String ex_1_mean = "a";
-                String ex_2_hira = "a";
-                String ex_2_mean = "a";
-                KanjiLevel kanji = new KanjiLevel(character, audio, mean, onyomi, kunyomi,
-                        ex_1_hira, ex_1_mean, ex_2_hira, ex_2_mean);
+                KanjiLevel kanji = new KanjiLevel(character, audio, mean, onyomi, kunyomi);
                 switch (level) {
                     case "1":
                         N5_level.add(kanji);

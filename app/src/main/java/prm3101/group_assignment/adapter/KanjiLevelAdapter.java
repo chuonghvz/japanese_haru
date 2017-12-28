@@ -2,6 +2,7 @@ package prm3101.group_assignment.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,8 +40,9 @@ public class KanjiLevelAdapter extends RecyclerView.Adapter<KanjiLevelAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         final KanjiLevel data = mData.get(position);
+        holder.number.setText("" + (position + 1));
         holder.character.setText(data.getCharacter());
         holder.mean.setText(data.getMean());
         holder.onyomi.setText(data.getOnyomi());
@@ -53,6 +55,16 @@ public class KanjiLevelAdapter extends RecyclerView.Adapter<KanjiLevelAdapter.Vi
 //                mContext.startActivity(intent);
             }
         });
+        holder.bookmark_uncheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.bookmark_check.getVisibility() == View.INVISIBLE) {
+                    holder.bookmark_check.setVisibility(View.VISIBLE);
+                } else {
+                    holder.bookmark_check.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
     }
 
@@ -61,15 +73,18 @@ public class KanjiLevelAdapter extends RecyclerView.Adapter<KanjiLevelAdapter.Vi
         return mData.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView character, mean, onyomi, kunyomi;
-        ImageView audio;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView character, number, mean, onyomi, kunyomi;
+        ImageView audio, bookmark_uncheck, bookmark_check;
         View item;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            number = (TextView) itemView.findViewById(R.id.number);
             character = (TextView) itemView.findViewById(R.id.character);
             audio = (ImageView) itemView.findViewById(R.id.volume);
+            bookmark_uncheck = (ImageView) itemView.findViewById(R.id.bookmark_uncheck);
+            bookmark_check = (ImageView) itemView.findViewById(R.id.bookmark_check);
             mean = (TextView) itemView.findViewById(R.id.meanValue);
             onyomi = (TextView) itemView.findViewById(R.id.onValue);
             kunyomi = (TextView) itemView.findViewById(R.id.kunValue);

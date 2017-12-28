@@ -1,6 +1,7 @@
 package prm3101.group_assignment.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -12,22 +13,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import prm3101.group_assignment.R;
+import prm3101.group_assignment.util.Utils;
 
 
 public class BasicFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private Utils utils = new Utils();
+    private SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
 
     public BasicFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static BasicFragment newInstance(String param1, String param2) {
+    public static BasicFragment newInstance() {
         BasicFragment fragment = new BasicFragment();
         return fragment;
     }
@@ -46,7 +54,15 @@ public class BasicFragment extends Fragment {
         View x = inflater.inflate(R.layout.fragment_basic, null);
         TabLayout tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) x.findViewById(R.id.viewpager);
+        String allKanji = utils.readJSONdata(getContext());
         setupViewPager(viewPager);
+
+        //Sent Data to another fragment
+        sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("All_KANJI", allKanji);
+        editor.commit();
+
         tabLayout.setupWithViewPager(viewPager);
         return x;
     }

@@ -1,6 +1,8 @@
 package prm3101.group_assignment.activity;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,11 +74,17 @@ public class SearchActivity extends AppCompatActivity {
 
         //Search Function
         recyclerView = (RecyclerView) findViewById(R.id.searchResult);
+
+        // Get data from BasicFragment
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String data = prefs.getString("All_KANJI", null);
+        final JSONArray AllKanji = utils.convertDataToSearch(data);
+
         mSearchValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
-                    utils.searchKanji(recyclerView, mSearchValue, SearchActivity.this);
+                    utils.searchKanji(recyclerView, mSearchValue, AllKanji, SearchActivity.this);
                     return true;
                 }
                 return false;

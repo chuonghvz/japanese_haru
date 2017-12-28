@@ -9,9 +9,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="23dp"
-        android:textColor="@color/black"
         android:text="Choose level:"
+        android:textColor="@color/black"
         android:textSize="16dp" />
+
 
     <Spinner
         android:id="@+id/spinner"
@@ -22,12 +23,35 @@
         android:layout_toRightOf="@id/level"
         android:spinnerMode="dropdown" />
 
+    <TextView
+        android:id="@+id/totalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/spinner"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="16dp"
+        android:text="Total words:"/>
+
+    <TextView
+        android:id="@+id/totalValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/totalLabel"
+        android:layout_marginTop="23dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="4dp"
+        android:textStyle="bold"
+        android:text="80"/>
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
+        android:layout_below="@id/spinner"
         android:layout_marginLeft="8dp"
-        android:layout_below="@id/spinner">
+        android:layout_marginRight="8dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/kanjiLevel"

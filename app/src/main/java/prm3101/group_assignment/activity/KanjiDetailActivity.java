@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -29,6 +31,7 @@ public class KanjiDetailActivity extends AppCompatActivity {
     private final String TAG = "KanjiDetailActivity";
     private Toolbar mToolbar;
     private VideoView mVideoView;
+    private ImageView mReplay;
     private TextView mTitle, mMean, mOnHira, mOnRead, mKuHira, mKuRead;
 
     @Override
@@ -46,6 +49,7 @@ public class KanjiDetailActivity extends AppCompatActivity {
         mKuHira = (TextView) findViewById(R.id.kuHira);
         mKuRead = (TextView) findViewById(R.id.kuRead);
         mVideoView = (VideoView) findViewById(R.id.videoView);
+        mReplay = (ImageView) findViewById(R.id.replay);
 
 
         // Set data
@@ -57,7 +61,13 @@ public class KanjiDetailActivity extends AppCompatActivity {
             mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    mp.setLooping(true);
+                    mp.setLooping(false);
+                    mVideoView.start();
+                }
+            });
+            mReplay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     mVideoView.start();
                 }
             });

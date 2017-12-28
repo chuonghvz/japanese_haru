@@ -10,22 +10,13 @@ public class KanjiLevel {
     private String mean;
     private String onyomi;
     private String kunyomi;
-    private String ex_1_hira;
-    private String ex_1_mean;
-    private String ex_2_hira;
-    private String ex_2_mean;
 
-    public KanjiLevel(String character, String sound, String mean, String onyomi, String kunyomi,
-                      String ex_1_hira, String ex_1_mean, String ex_2_hira, String ex_2_mean) {
+    public KanjiLevel(String character, String sound, String mean, String onyomi, String kunyomi) {
         this.character = character;
         this.sound = sound;
         this.mean = mean;
         this.onyomi = onyomi;
         this.kunyomi = kunyomi;
-        this.ex_1_hira = ex_1_hira;
-        this.ex_1_mean = ex_1_mean;
-        this.ex_2_hira = ex_2_hira;
-        this.ex_2_mean = ex_2_mean;
     }
 
     public String getCharacter() {
@@ -68,38 +59,6 @@ public class KanjiLevel {
         this.kunyomi = kunyomi;
     }
 
-    public String getEx_1_hira() {
-        return ex_1_hira;
-    }
-
-    public void setEx_1_hira(String ex_1_hira) {
-        this.ex_1_hira = ex_1_hira;
-    }
-
-    public String getEx_1_mean() {
-        return ex_1_mean;
-    }
-
-    public void setEx_1_mean(String ex_1_mean) {
-        this.ex_1_mean = ex_1_mean;
-    }
-
-    public String getEx_2_hira() {
-        return ex_2_hira;
-    }
-
-    public void setEx_2_hira(String ex_2_hira) {
-        this.ex_2_hira = ex_2_hira;
-    }
-
-    public String getEx_2_mean() {
-        return ex_2_mean;
-    }
-
-    public void setEx_2_mean(String ex_2_mean) {
-        this.ex_2_mean = ex_2_mean;
-    }
-
     @Override
     public String toString() {
         return "KanjiLevel{" +
@@ -108,10 +67,6 @@ public class KanjiLevel {
                 ", mean='" + mean + '\'' +
                 ", onyomi='" + onyomi + '\'' +
                 ", kunyomi='" + kunyomi + '\'' +
-                ", ex_1_hira='" + ex_1_hira + '\'' +
-                ", ex_1_mean='" + ex_1_mean + '\'' +
-                ", ex_2_hira='" + ex_2_hira + '\'' +
-                ", ex_2_mean='" + ex_2_mean + '\'' +
                 '}';
     }
 }

@@ -29,27 +29,29 @@ public class TranslateActivity extends AppCompatActivity {
     private final String TAG = "TranslateActivity";
     private APIService mService;
     private TextToSpeech speech;
-    private Toolbar mToolbar;
-    private ImageView mCompareArrow, mTranslate, mClear, mInputVolume, mOutputVolume;
+    private ImageView mCompareArrow;
     private RelativeLayout mOutputView, mResultView;
-    private TextView mToolbarText, mFromLanguage, mToLanguage, mInputText, mOutputText;
+    private TextView mFromLanguage;
+    private TextView mToLanguage;
+    private TextView mInputText;
+    private TextView mOutputText;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translate);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        mToolbarText = (TextView) findViewById(R.id.toolbar_text);
+        TextView mToolbarText = (TextView) findViewById(R.id.toolbar_text);
         mToolbarText.setText(R.string.translate);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mCompareArrow = (ImageView) findViewById(R.id.compareArrow);
-        mTranslate = (ImageView) findViewById(R.id.translate);
-        mClear = (ImageView) findViewById(R.id.clear);
-        mInputVolume = (ImageView) findViewById(R.id.inputVolume);
-        mOutputVolume = (ImageView) findViewById(R.id.outputVolume);
+        ImageView mTranslate = (ImageView) findViewById(R.id.translate);
+        ImageView mClear = (ImageView) findViewById(R.id.clear);
+        ImageView mInputVolume = (ImageView) findViewById(R.id.inputVolume);
+        ImageView mOutputVolume = (ImageView) findViewById(R.id.outputVolume);
         mFromLanguage = (TextView) findViewById(R.id.fromLanguage);
         mToLanguage = (TextView) findViewById(R.id.toLanguage);
         mInputText = (TextView) findViewById(R.id.inputText);

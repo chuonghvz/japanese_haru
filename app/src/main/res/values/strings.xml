@@ -4,8 +4,6 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="no_result">No result</string>
-    <string name="katakana">Katakana</string>
-    <string name="hiragana">Hiragana</string>
     <string name="translate">Translate</string>
     <string name="english">English</string>
     <string name="japanese">Japanese</string>

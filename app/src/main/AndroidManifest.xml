@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,9 @@
         </activity>
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.KanjiDetailActivity" />
-        <activity android:name=".activity.TranslateActivity"></activity>
+        <activity android:name=".activity.TranslateActivity" />
+        <activity android:name=".activity.MainActivity" />
+
     </application>
 
 </manifest>

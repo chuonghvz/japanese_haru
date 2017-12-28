@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,6 @@ public class BasicFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private Utils utils = new Utils();
-    private SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
 
     public BasicFragment() {
         // Required empty public constructor
@@ -54,15 +53,7 @@ public class BasicFragment extends Fragment {
         View x = inflater.inflate(R.layout.fragment_basic, null);
         TabLayout tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) x.findViewById(R.id.viewpager);
-        String allKanji = utils.readJSONdata(getContext());
         setupViewPager(viewPager);
-
-        //Sent Data to another fragment
-        sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("All_KANJI", allKanji);
-        editor.commit();
-
         tabLayout.setupWithViewPager(viewPager);
         return x;
     }

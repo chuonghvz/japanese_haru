@@ -71,12 +71,20 @@ public class KanjiFragment extends Fragment {
         Spinner dropdown = (Spinner) v.findViewById(R.id.spinner);
         mKanjiLevel = (RecyclerView) v.findViewById(R.id.kanjiLevel);
         mTotalValue = (TextView) v.findViewById(R.id.totalValue);
+
+        final ArrayList<KanjiLevel> N0_level = new ArrayList<>();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mKanjiLevel.setLayoutManager(layoutManager);
+        KanjiLevelAdapter N0_adapter = new KanjiLevelAdapter(getContext(), N0_level);
+        mKanjiLevel.setAdapter(N0_adapter);
+
+
         String[] items = new String[]{"N5", "N4", "N3", "N2", "N1"};
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(),
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(spinnerAdapter);
+
+
         HashMap<String, ArrayList<KanjiLevel>> kanjiLevelData = utils.getKanjiLevel(getContext(), AllKanji);
         final ArrayList<KanjiLevel> N5_level = kanjiLevelData.get("N5_level");
         final ArrayList<KanjiLevel> N4_level = kanjiLevelData.get("N4_level");
@@ -122,6 +130,7 @@ public class KanjiFragment extends Fragment {
 
             }
         });
+        Log.e("aaaaa", "KanjiFragment");
         return v;
     }
 

@@ -22,14 +22,13 @@ import prm3101.group_assignment.util.Utils;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.nav_action);
         mToolbar.setTitle(R.string.home);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

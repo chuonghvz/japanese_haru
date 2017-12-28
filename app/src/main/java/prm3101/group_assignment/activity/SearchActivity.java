@@ -36,10 +36,7 @@ import prm3101.group_assignment.util.Utils;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private final String TAG = "SearchActivity";
-    private TextView mToolbarText;
     private EditText mSearchValue;
-    private Toolbar mToolbar;
     private RecyclerView recyclerView;
     private Utils utils = new Utils();
 
@@ -47,10 +44,10 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        mToolbarText = (TextView) findViewById(R.id.toolbar_text);
+        TextView mToolbarText = (TextView) findViewById(R.id.toolbar_text);
         mSearchValue = (EditText) findViewById(R.id.inputSearch);
         mToolbarText.setText(R.string.search);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

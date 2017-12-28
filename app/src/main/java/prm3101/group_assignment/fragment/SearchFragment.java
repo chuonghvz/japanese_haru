@@ -63,11 +63,19 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.searchResult);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        ArrayList<Kanji> data2 = new ArrayList<>();
+        KanjiAdapter adapter = new KanjiAdapter(getContext(), data2);
+        recyclerView.setAdapter(adapter);
+
         mSearchValue = (EditText) v.findViewById(R.id.inputSearch);
         // Get data from BasicFragment
         SharedPreferences prefs = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String data = prefs.getString("All_KANJI", null);
         final JSONArray AllKanji = utils.convertDataToSearch(data);
+
         mSearchValue.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
@@ -78,6 +86,7 @@ public class SearchFragment extends Fragment {
                 return false;
             }
         });
+        Log.e("aaaaa", "SearchFragment");
         return v;
     }
 

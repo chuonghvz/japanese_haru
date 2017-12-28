@@ -94,7 +94,7 @@
             android:layout_marginRight="40dp"
             android:layout_toRightOf="@id/kunLabel"
             android:text="cccccccccccccccc"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="16dp"
             android:layout_marginBottom="8dp"/>
 

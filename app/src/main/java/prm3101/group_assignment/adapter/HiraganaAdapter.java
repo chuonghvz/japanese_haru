@@ -20,7 +20,6 @@ public class HiraganaAdapter extends BaseAdapter {
     private final ArrayList<String[]> hiras;
 
     private Context mContext;
-    private LayoutInflater mInflater;
 
     public HiraganaAdapter(ArrayList<String[]> hiras, Context mContext) {
         this.hiras = hiras;
@@ -47,7 +46,7 @@ public class HiraganaAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View gridView = convertView;
         if(convertView == null){
-            mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             gridView = mInflater.inflate(R.layout.items_hiragana, null);
         }
         TextView hira = (TextView) gridView.findViewById(R.id.hira);

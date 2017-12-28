@@ -28,28 +28,24 @@ import prm3101.group_assignment.data.KanjiExample;
 
 public class KanjiDetailActivity extends AppCompatActivity {
 
-    private final String TAG = "KanjiDetailActivity";
-    private Toolbar mToolbar;
     private VideoView mVideoView;
-    private ImageView mReplay;
-    private TextView mTitle, mMean, mOnHira, mOnRead, mKuHira, mKuRead;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kanji_detail);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mTitle = (TextView) findViewById(R.id.toolbar_text);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView mTitle = (TextView) findViewById(R.id.toolbar_text);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        mMean = (TextView) findViewById(R.id.mean);
-        mOnHira = (TextView) findViewById(R.id.onHira);
-        mOnRead = (TextView) findViewById(R.id.onRead);
-        mKuHira = (TextView) findViewById(R.id.kuHira);
-        mKuRead = (TextView) findViewById(R.id.kuRead);
+        TextView mMean = (TextView) findViewById(R.id.mean);
+        TextView mOnHira = (TextView) findViewById(R.id.onHira);
+        TextView mOnRead = (TextView) findViewById(R.id.onRead);
+        TextView mKuHira = (TextView) findViewById(R.id.kuHira);
+        TextView mKuRead = (TextView) findViewById(R.id.kuRead);
         mVideoView = (VideoView) findViewById(R.id.videoView);
-        mReplay = (ImageView) findViewById(R.id.replay);
+        ImageView mReplay = (ImageView) findViewById(R.id.replay);
 
 
         // Set data

@@ -10,13 +10,15 @@ public class KanjiLevel {
     private String mean;
     private String onyomi;
     private String kunyomi;
+    private String kanjiData;
 
-    public KanjiLevel(String character, String sound, String mean, String onyomi, String kunyomi) {
+    public KanjiLevel(String character, String sound, String mean, String onyomi, String kunyomi, String kanjiData) {
         this.character = character;
         this.sound = sound;
         this.mean = mean;
         this.onyomi = onyomi;
         this.kunyomi = kunyomi;
+        this.kanjiData = kanjiData;
     }
 
     public String getCharacter() {
@@ -57,6 +59,14 @@ public class KanjiLevel {
 
     public void setKunyomi(String kunyomi) {
         this.kunyomi = kunyomi;
+    }
+
+    public String getKanjiData() {
+        return kanjiData;
+    }
+
+    public void setKanjiData(String kanjiData) {
+        this.kanjiData = kanjiData;
     }
 
     @Override

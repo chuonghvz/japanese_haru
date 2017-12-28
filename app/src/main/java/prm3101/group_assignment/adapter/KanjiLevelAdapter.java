@@ -50,9 +50,9 @@ public class KanjiLevelAdapter extends RecyclerView.Adapter<KanjiLevelAdapter.Vi
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(mContext, KanjiDetailActivity.class);
-//                intent.putExtra("kanjiData", course.getKanjiData());
-//                mContext.startActivity(intent);
+                Intent intent = new Intent(mContext, KanjiDetailActivity.class);
+                intent.putExtra("kanjiData", data.getKanjiData());
+                mContext.startActivity(intent);
             }
         });
         holder.bookmark_uncheck.setOnClickListener(new View.OnClickListener() {

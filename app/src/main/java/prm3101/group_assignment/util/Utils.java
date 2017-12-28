@@ -72,7 +72,7 @@ public class Utils {
         ArrayList<Kanji> data = new ArrayList<>();
         KanjiAdapter adapter = new KanjiAdapter(context, data);
         if (searchValue.isEmpty()) {
-            Toast.makeText(context, R.string.no_result, Toast.LENGTH_LONG);
+            Toast.makeText(context, R.string.no_result, Toast.LENGTH_LONG).show();
         } else {
             try {
                 for (int i = 0; i < AllKanji.length(); i++) {
@@ -89,6 +89,9 @@ public class Utils {
                 e.printStackTrace();
             }
         }
+        if (data.size() == 0) {
+            Toast.makeText(context, R.string.no_result, Toast.LENGTH_LONG).show();
+        }
         recyclerView.setAdapter(adapter);
     }
 
@@ -103,6 +106,7 @@ public class Utils {
         try {
             for (int i = 0; i < AllKanji.length(); i++) {
                 JSONObject kanjiData = AllKanji.getJSONObject(i);
+                String data = kanjiData.toString();
                 String level = kanjiData.getJSONObject("references").getString("grade");
                 String mean = kanjiData.getJSONObject("kanji").getJSONObject("meaning")
                         .getString("english");
@@ -114,7 +118,7 @@ public class Utils {
                 String kunyomi = kanjiData.getJSONObject("kanji").getJSONObject("kunyomi")
                         .getString("hiragana") + " (" +
                         kanjiData.getJSONObject("kanji").getJSONObject("kunyomi").getString("romaji") + ")";
-                KanjiLevel kanji = new KanjiLevel(character, audio, mean, onyomi, kunyomi);
+                KanjiLevel kanji = new KanjiLevel(character, audio, mean, onyomi, kunyomi, data);
                 switch (level) {
                     case "1":
                         N5_level.add(kanji);

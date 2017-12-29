@@ -35,8 +35,7 @@ public class BasicFragment extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     public static BasicFragment newInstance() {
-        BasicFragment fragment = new BasicFragment();
-        return fragment;
+        return new BasicFragment();
     }
 
     @Override

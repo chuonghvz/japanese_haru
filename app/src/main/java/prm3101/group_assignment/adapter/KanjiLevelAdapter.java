@@ -35,8 +35,7 @@ public class KanjiLevelAdapter extends RecyclerView.Adapter<KanjiLevelAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(R.layout.items_kanji_level, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -47,14 +46,6 @@ public class KanjiLevelAdapter extends RecyclerView.Adapter<KanjiLevelAdapter.Vi
         holder.mean.setText(data.getMean());
         holder.onyomi.setText(data.getOnyomi());
         holder.kunyomi.setText(data.getKunyomi());
-        holder.item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, KanjiDetailActivity.class);
-                intent.putExtra("kanjiData", data.getKanjiData());
-                mContext.startActivity(intent);
-            }
-        });
         holder.bookmark_uncheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +56,14 @@ public class KanjiLevelAdapter extends RecyclerView.Adapter<KanjiLevelAdapter.Vi
                 }
             }
         });
-
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, KanjiDetailActivity.class);
+                intent.putExtra("kanjiData", data.getKanjiData());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

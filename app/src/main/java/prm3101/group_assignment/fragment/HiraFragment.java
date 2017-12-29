@@ -69,8 +69,7 @@ public class HiraFragment extends Fragment {
 
 
     public static HiraFragment newInstance(String param1, String param2) {
-        HiraFragment fragment = new HiraFragment();
-        return fragment;
+        return new HiraFragment();
     }
 
     @Override
@@ -131,7 +130,6 @@ public class HiraFragment extends Fragment {
                 });
             }
         });
-        Log.e("aaaaa", "HiraFragment");
         return v;
     }
 

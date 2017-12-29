@@ -9,4 +9,5 @@
     <color name="grey">#ececec</color>
     <color name="grey_line">#AAAAAA</color>
     <color name="red">#ff0000</color>
+    <color name="splash">#5BB7B7</color>
 </resources>

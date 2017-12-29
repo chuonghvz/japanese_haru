@@ -2,6 +2,7 @@ package prm3101.group_assignment.activity;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -105,6 +106,10 @@ public class KanjiDetailActivity extends AppCompatActivity {
         }
 
     }
+
+//    public class UpdateView extends AsyncTask<String, void, JSONObject>{
+//
+//    }
 
     @Override
     public boolean onSupportNavigateUp() {

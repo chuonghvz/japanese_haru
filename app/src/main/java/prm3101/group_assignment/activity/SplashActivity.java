@@ -31,12 +31,12 @@ public class SplashActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     editor.putString("All_KANJI", allKanji);
                     editor.commit();
-                    int waited = 0;
-                    while (waited < _splashTime) {
-                        sleep(100);
-                        waited += 100;
-                    }
-                } catch (InterruptedException e) {
+//                    int waited = 0;
+//                    while (waited < _splashTime) {
+//                        sleep(100);
+//                        waited += 100;
+//                    }
+                } catch (Exception e) {
                     // do nothing
                 } finally {
                     finish();

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splash"
+    android:background="@color/colorPrimary"
     tools:context="prm3101.group_assignment.activity.SplashActivity">
 
     <RelativeLayout
@@ -13,20 +13,10 @@
 
         <pl.droidsonroids.gif.GifTextView
             android:id="@+id/hamster"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:background="@drawable/hamster" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/hamster"
-            android:layout_centerHorizontal="true"
-            android:text="Loading..."
-            android:textColor="@color/white"
-            android:textSize="24dp" />
+            android:layout_width="250dp"
+            android:layout_height="170dp"
+            android:background="@drawable/coffee" />
 
     </RelativeLayout>
-
 
 </RelativeLayout>

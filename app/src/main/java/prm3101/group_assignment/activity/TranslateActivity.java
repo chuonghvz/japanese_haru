@@ -1,5 +1,8 @@
 package prm3101.group_assignment.activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.os.AsyncTask;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,9 +11,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -29,12 +34,11 @@ public class TranslateActivity extends AppCompatActivity {
     private final String TAG = "TranslateActivity";
     private APIService mService;
     private TextToSpeech speech;
-    private ImageView mCompareArrow;
     private RelativeLayout mOutputView, mResultView;
-    private TextView mFromLanguage;
-    private TextView mToLanguage;
-    private TextView mInputText;
-    private TextView mOutputText;
+    private TextView mFromLanguage, mToLanguage, mInputText, mOutputText, mToLanguage_2, mFromLanguage_2;
+    private ImageView mCompareArrow, mTranslate, mClear, mInputVolume, mOutputVolume, mCopy;
+    private ClipboardManager myClipboard;
+    private ClipData myClip;
 
 
     @Override
@@ -48,12 +52,15 @@ public class TranslateActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mCompareArrow = (ImageView) findViewById(R.id.compareArrow);
-        ImageView mTranslate = (ImageView) findViewById(R.id.translate);
-        ImageView mClear = (ImageView) findViewById(R.id.clear);
-        ImageView mInputVolume = (ImageView) findViewById(R.id.inputVolume);
-        ImageView mOutputVolume = (ImageView) findViewById(R.id.outputVolume);
+        mTranslate = (ImageView) findViewById(R.id.translate);
+        mClear = (ImageView) findViewById(R.id.clear);
+        mCopy = (ImageView) findViewById(R.id.copy);
+        mInputVolume = (ImageView) findViewById(R.id.inputVolume);
+        mOutputVolume = (ImageView) findViewById(R.id.outputVolume);
         mFromLanguage = (TextView) findViewById(R.id.fromLanguage);
+        mFromLanguage_2 = (TextView) findViewById(R.id.fromLanguage_2);
         mToLanguage = (TextView) findViewById(R.id.toLanguage);
+        mToLanguage_2 = (TextView) findViewById(R.id.toLanguage_2);
         mInputText = (TextView) findViewById(R.id.inputText);
         mOutputText = (TextView) findViewById(R.id.outputText);
         mOutputView = (RelativeLayout) findViewById(R.id.output);
@@ -74,15 +81,19 @@ public class TranslateActivity extends AppCompatActivity {
                         R.anim.from_language_move));
                 if (mFromLanguage.getText().toString().equalsIgnoreCase("english")) {
                     mFromLanguage.setText(R.string.japanese);
+                    mFromLanguage_2.setText(R.string.japanese);
                 } else {
                     mFromLanguage.setText(R.string.english);
+                    mFromLanguage_2.setText(R.string.english);
                 }
                 mToLanguage.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),
                         R.anim.to_language_move));
                 if (mToLanguage.getText().toString().equalsIgnoreCase("japanese")) {
                     mToLanguage.setText(R.string.english);
+                    mToLanguage_2.setText(R.string.english);
                 } else {
                     mToLanguage.setText(R.string.japanese);
+                    mToLanguage_2.setText(R.string.japanese);
                 }
             }
         });
@@ -91,49 +102,42 @@ public class TranslateActivity extends AppCompatActivity {
         mTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mOutputView.setVisibility(View.VISIBLE);
+                mResultView.setVisibility(View.VISIBLE);
+                mOutputText.setText("Translating...");
+
+                InputMethodManager inputManager =
+                        (InputMethodManager)
+                                getSystemService(TranslateActivity.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+
                 //Call Api
                 Map<String, String> data = new HashMap<>();
                 data.put("q", mInputText.getText().toString().trim());
                 switch (mFromLanguage.getText().toString()) {
                     case "English":
                         data.put("langpair", "en|ja");
-                        mService.getTranslateResponse(data).enqueue(new Callback<TranslateResponse>() {
-                            @Override
-                            public void onResponse(Call<TranslateResponse> call,
-                                                   Response<TranslateResponse> response) {
-                                if (response.isSuccessful()) {
-                                    mOutputView.setVisibility(View.VISIBLE);
-                                    mResultView.setVisibility(View.VISIBLE);
-                                    mOutputText.setText(response.body().getResponseData().getTranslatedText());
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<TranslateResponse> call, Throwable t) {
-                                Log.e(TAG, "Fail - " + t.toString());
-                            }
-                        });
                         break;
                     case "Japanese":
                         data.put("langpair", "ja|en");
-                        mService.getTranslateResponse(data).enqueue(new Callback<TranslateResponse>() {
-                            @Override
-                            public void onResponse(Call<TranslateResponse> call,
-                                                   Response<TranslateResponse> response) {
-                                if (response.isSuccessful()) {
-                                    mOutputView.setVisibility(View.VISIBLE);
-                                    mResultView.setVisibility(View.VISIBLE);
-                                    mOutputText.setText(response.body().getResponseData().getTranslatedText());
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<TranslateResponse> call, Throwable t) {
-                                Log.e(TAG, "Fail - " + t.toString());
-                            }
-                        });
                         break;
                 }
+                mService.getTranslateResponse(data).enqueue(new Callback<TranslateResponse>() {
+                    @Override
+                    public void onResponse(Call<TranslateResponse> call,
+                                           Response<TranslateResponse> response) {
+                        if (response.isSuccessful()) {
+                            mOutputText.setText(response.body().getResponseData().getTranslatedText());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TranslateResponse> call, Throwable t) {
+                        Log.e(TAG, "Fail - " + t.toString());
+                        Toast.makeText(TranslateActivity.this, R.string.no_result, Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
@@ -178,6 +182,19 @@ public class TranslateActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+
+        //Copy Translate text
+        myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+        mCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = mOutputText.getText().toString();
+                myClip = ClipData.newPlainText("text", text);
+                myClipboard.setPrimaryClip(myClip);
+                Toast.makeText(getApplicationContext(), "Text Copied",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

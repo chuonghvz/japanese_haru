@@ -70,6 +70,7 @@
                 android:src="@drawable/ic_volume_up_black_24dp" />
 
             <TextView
+                android:id="@+id/fromLanguage_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
@@ -98,6 +99,8 @@
             android:layout_marginRight="16dp"
             android:backgroundTint="@android:color/transparent"
             android:hint="Tap to enter text"
+            android:inputType="text"
+            android:imeOptions="actionDone"
             android:textSize="16dp" />
 
         <RelativeLayout
@@ -137,6 +140,7 @@
             android:src="@drawable/ic_volume_up_black_24dp" />
 
         <TextView
+            android:id="@+id/toLanguage_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
@@ -147,6 +151,7 @@
             android:textSize="16dp" />
 
         <ImageView
+            android:id="@+id/copy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

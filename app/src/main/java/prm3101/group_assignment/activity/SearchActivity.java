@@ -62,23 +62,6 @@ public class SearchActivity extends AppCompatActivity {
         KanjiAdapter adapter = new KanjiAdapter(SearchActivity.this, temp);
         recyclerView.setAdapter(adapter);
 
-//        mSearchValue.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-
         //Search Function
         new SearchTask().execute();
 

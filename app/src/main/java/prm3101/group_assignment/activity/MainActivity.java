@@ -73,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
 
+            case R.id.chatbot: {
+                Intent intent = new Intent(getApplicationContext(), ChatbotActivity.class);
+                startActivity(intent);
+                break;
+            }
+
             default:
                 break;
         }

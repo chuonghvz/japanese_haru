@@ -3,8 +3,11 @@
     package="prm3101.group_assignment">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
 
     <application
+        android:name=".util.FirebaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,7 +25,7 @@
         <activity android:name=".activity.KanjiDetailActivity" />
         <activity android:name=".activity.TranslateActivity" />
         <activity android:name=".activity.MainActivity" />
-
+        <activity android:name=".activity.ChatbotActivity" />
     </application>
 
 </manifest>

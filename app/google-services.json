@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1091575763695",
+    "firebase_url": "https://japanese-app-chatbot.firebaseio.com",
+    "project_id": "japanese-app-chatbot",
+    "storage_bucket": "japanese-app-chatbot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091575763695:android:0fe6501ac0faf5d6",
+        "android_client_info": {
+          "package_name": "prm3101.group_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091575763695-6sckf8pg8edmnm7diu3o13rk1uaufutb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoy_x-lxiKkqLn3kTl1kBXj2SDajic-tE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -19,4 +19,5 @@ public class ChatbotAdapter extends RecyclerView.ViewHolder  {
         leftText = (TextView)itemView.findViewById(R.id.leftText);
         rightText = (TextView)itemView.findViewById(R.id.rightText);
     }
+
 }

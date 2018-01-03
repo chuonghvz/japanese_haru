@@ -44,6 +44,7 @@ import prm3101.group_assignment.util.Utils;
 
 public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
+    private final String TOKEN = "e5e179ae84db475facaf659427ce5904";
     private RecyclerView recyclerView;
     private Utils utils = new Utils();
     private EditText mInputText;
@@ -52,11 +53,6 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
     private FirebaseRecyclerAdapter<ChatMessage, ChatbotAdapter> chatbotAdapter;
     private Boolean flagFab = true;
     private AIService aiService;
-//    final AIConfiguration config = new AIConfiguration("e5e179ae84db475facaf659427ce5904",
-//            AIConfiguration.SupportedLanguages.English,
-//            AIConfiguration.RecognitionEngine.System);
-//    final AIDataService aiDataService = new AIDataService(config);
-//    final AIRequest aiRequest = new AIRequest();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,15 +79,11 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
                 (this, new String[]{android.Manifest.permission.RECORD_AUDIO}, 1);
         ref = FirebaseDatabase.getInstance().getReference();
         ref.keepSynced(true);
-        final AIConfiguration config = new AIConfiguration("e5e179ae84db475facaf659427ce5904",
-                AIConfiguration.SupportedLanguages.English,
+        final AIConfiguration config = new AIConfiguration(TOKEN, AIConfiguration.SupportedLanguages.English,
                 AIConfiguration.RecognitionEngine.System);
-
         aiService = AIService.getService(this, config);
         aiService.setListener(this);
-
         final AIDataService aiDataService = new AIDataService(config);
-
         final AIRequest aiRequest = new AIRequest();
 
         // Voice/Sent button click
@@ -185,11 +177,11 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
         chatbotAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
-            public void onItemRangeChanged(int positionStart, int itemCount) {
-                super.onItemRangeChanged(positionStart, itemCount);
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
                 int msgCount = chatbotAdapter.getItemCount();
                 int lastVisiblePosition = linearLayoutManager.findLastCompletelyVisibleItemPosition();
-
+                Log.e("aaa", " " + lastVisiblePosition);
                 if (lastVisiblePosition == -1 ||
                         (positionStart >= (msgCount - 1) &&
                                 lastVisiblePosition == (positionStart - 1))) {
@@ -261,6 +253,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
         v.startAnimation(anim_out);
     }
 
+    // Get message result from API
     @Override
     public void onResult(AIResponse response) {
         Result result = response.getResult();

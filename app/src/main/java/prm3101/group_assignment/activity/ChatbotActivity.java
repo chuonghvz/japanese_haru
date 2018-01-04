@@ -54,6 +54,11 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
     private Boolean flagFab = true;
     private AIService aiService;
 
+    final AIConfiguration config = new AIConfiguration(TOKEN, AIConfiguration.SupportedLanguages.English,
+            AIConfiguration.RecognitionEngine.System);
+    final AIDataService aiDataService = new AIDataService(config);
+    final AIRequest aiRequest = new AIRequest();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,17 +79,13 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        //ChatBot
+        //ChatBot - Register to Dialogflow/Firebase
         ActivityCompat.requestPermissions
                 (this, new String[]{android.Manifest.permission.RECORD_AUDIO}, 1);
         ref = FirebaseDatabase.getInstance().getReference();
         ref.keepSynced(true);
-        final AIConfiguration config = new AIConfiguration(TOKEN, AIConfiguration.SupportedLanguages.English,
-                AIConfiguration.RecognitionEngine.System);
         aiService = AIService.getService(this, config);
         aiService.setListener(this);
-        final AIDataService aiDataService = new AIDataService(config);
-        final AIRequest aiRequest = new AIRequest();
 
         // Voice/Sent button click
         voiceBtn.setOnClickListener(new View.OnClickListener() {
@@ -95,28 +96,8 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
                     ChatMessage chatMessage = new ChatMessage(message, "user");
                     ref.child("chat").push().setValue(chatMessage);
                     aiRequest.setQuery(message);
-                    new AsyncTask<AIRequest, Void, AIResponse>() {
-                        @Override
-                        protected AIResponse doInBackground(AIRequest... aiRequests) {
-                            final AIRequest request = aiRequests[0];
-                            try {
-                                final AIResponse response = aiDataService.request(aiRequest);
-                                return response;
-                            } catch (AIServiceException e) {
-                            }
-                            return null;
-                        }
-
-                        @Override
-                        protected void onPostExecute(AIResponse response) {
-                            if (response != null) {
-                                Result result = response.getResult();
-                                String reply = result.getFulfillment().getSpeech();
-                                ChatMessage chatMessage = new ChatMessage(reply, "bot");
-                                ref.child("chat").push().setValue(chatMessage);
-                            }
-                        }
-                    }.execute(aiRequest);
+//                    Chat Task
+                    new ChatTask().execute(aiRequest);
                 } else {
                     aiService.startListening();
                 }
@@ -195,29 +176,29 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
     }
 
-//    public class ChatTask extends AsyncTask<AIRequest, Void, AIResponse> {
-//        @Override
-//        protected AIResponse doInBackground(AIRequest... aiRequests) {
-//            final AIRequest request = aiRequests[0];
-//            try {
-//                final AIResponse response = aiDataService.request(aiRequest);
-//                return response;
-//            } catch (AIServiceException e) {
-//            }
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(AIResponse response) {
-//            super.onPostExecute(response);
-//            if (response != null) {
-//                Result result = response.getResult();
-//                String reply = result.getFulfillment().getSpeech();
-//                ChatMessage chatMessage = new ChatMessage(reply, "bot");
-//                ref.child("chat").push().setValue(chatMessage);
-//            }
-//        }
-//    }
+    public class ChatTask extends AsyncTask<AIRequest, Void, AIResponse> {
+        @Override
+        protected AIResponse doInBackground(AIRequest... aiRequests) {
+            final AIRequest request = aiRequests[0];
+            try {
+                final AIResponse response = aiDataService.request(aiRequest);
+                return response;
+            } catch (AIServiceException e) {
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(AIResponse response) {
+            super.onPostExecute(response);
+            if (response != null) {
+                Result result = response.getResult();
+                String reply = result.getFulfillment().getSpeech();
+                ChatMessage chatMessage = new ChatMessage(reply, "bot");
+                ref.child("chat").push().setValue(chatMessage);
+            }
+        }
+    }
 
     public void ImageViewAnimatedChange(Context c, final ImageView v, final Bitmap new_image) {
         final Animation anim_out = AnimationUtils.loadAnimation(c, R.anim.zoom_out);

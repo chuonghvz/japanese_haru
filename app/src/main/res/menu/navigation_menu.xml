@@ -17,6 +17,6 @@
     <item
         android:id="@+id/chatbot"
         android:icon="@drawable/ic_talking"
-        android:title="Chatbot" />
+        android:title="Chat with Haru" />
 
 </menu>

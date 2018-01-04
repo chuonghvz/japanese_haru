@@ -13,15 +13,19 @@
         android:id="@+id/chatData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/inputView"
         android:layout_below="@id/toolbar"
         android:background="#f4f6f7"
         android:clipToPadding="false"
-        android:paddingBottom="50dp"
+        android:paddingBottom="4dp"
         android:paddingTop="10dp" />
 
     <RelativeLayout
+        android:id="@+id/inputView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="#f4f6f7"
         android:layout_alignParentBottom="true">
 
 

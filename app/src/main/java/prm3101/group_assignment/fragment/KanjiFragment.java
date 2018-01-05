@@ -1,11 +1,14 @@
 package prm3101.group_assignment.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,6 +32,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import prm3101.group_assignment.R;
+import prm3101.group_assignment.activity.SearchActivity;
 import prm3101.group_assignment.adapter.HiraganaAdapter;
 import prm3101.group_assignment.adapter.KanjiAdapter;
 import prm3101.group_assignment.adapter.KanjiLevelAdapter;
@@ -45,6 +49,7 @@ public class KanjiFragment extends Fragment {
     private Utils utils = new Utils();
     private SharedPreferences prefs;
     private Spinner dropdown;
+    private FloatingActionButton mSearch;
 
     public KanjiFragment() {
         // Required empty public constructor
@@ -69,6 +74,7 @@ public class KanjiFragment extends Fragment {
         dropdown = (Spinner) v.findViewById(R.id.spinner);
         mKanjiLevel = (RecyclerView) v.findViewById(R.id.kanjiLevel);
         mTotalValue = (TextView) v.findViewById(R.id.totalValue);
+        mSearch = v.findViewById(R.id.searchButton);
 
         final ArrayList<KanjiLevel> temp = new ArrayList<>();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -81,57 +87,18 @@ public class KanjiFragment extends Fragment {
                 android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(spinnerAdapter);
 
+        // Update View with Kanji level data
         new UpdateView().execute();
 
-//        Get data from BasicFragment
-//        prefs = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-//        String data = prefs.getString("All_KANJI", null);
-//        JSONArray AllKanji = utils.convertDataToSearch(data);
-//        HashMap<String, ArrayList<KanjiLevel>> kanjiLevelData = utils.getKanjiLevel(getContext(), AllKanji);
-//        final ArrayList<KanjiLevel> N5_level = kanjiLevelData.get("N5_level");
-//        final ArrayList<KanjiLevel> N4_level = kanjiLevelData.get("N4_level");
-//        final ArrayList<KanjiLevel> N3_level = kanjiLevelData.get("N3_level");
-//        final ArrayList<KanjiLevel> N2_level = kanjiLevelData.get("N2_level");
-//        final ArrayList<KanjiLevel> N1_level = kanjiLevelData.get("N1_level");
-//        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                switch (i) {
-//                    case 0:
-//                        KanjiLevelAdapter N5_adapter = new KanjiLevelAdapter(getContext(), N5_level);
-//                        mTotalValue.setText("" + N5_level.size());
-//                        mKanjiLevel.setAdapter(N5_adapter);
-//                        break;
-//                    case 1:
-//                        KanjiLevelAdapter N4_adapter = new KanjiLevelAdapter(getContext(), N4_level);
-//                        mTotalValue.setText("" + N4_level.size());
-//                        mKanjiLevel.setAdapter(N4_adapter);
-//                        break;
-//                    case 2:
-//                        KanjiLevelAdapter N3_adapter = new KanjiLevelAdapter(getContext(), N3_level);
-//                        mTotalValue.setText("" + N3_level.size());
-//                        mKanjiLevel.setAdapter(N3_adapter);
-//                        break;
-//                    case 3:
-//                        KanjiLevelAdapter N2_adapter = new KanjiLevelAdapter(getContext(), N2_level);
-//                        mTotalValue.setText("" + N2_level.size());
-//                        mKanjiLevel.setAdapter(N2_adapter);
-//                        break;
-//                    case 4:
-//                        KanjiLevelAdapter N1_adapter = new KanjiLevelAdapter(getContext(), N1_level);
-//                        mTotalValue.setText("" + N1_level.size());
-//                        mKanjiLevel.setAdapter(N1_adapter);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
+        // Search button event
+        mSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return v;
     }
 

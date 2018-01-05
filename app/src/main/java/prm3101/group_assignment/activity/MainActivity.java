@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import prm3101.group_assignment.fragment.BasicFragment;
 import prm3101.group_assignment.util.Utils;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
@@ -29,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.nav_action);
-        mToolbar.setTitle(R.string.home);
+        TextView mToolbarText = (TextView) findViewById(R.id.toolbar_text);
+        mToolbarText.setText(R.string.home);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.temp, R.string.temp);

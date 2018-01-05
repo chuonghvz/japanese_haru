@@ -96,7 +96,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
                     ChatMessage chatMessage = new ChatMessage(message, "user");
                     ref.child("chat").push().setValue(chatMessage);
                     aiRequest.setQuery(message);
-//                    Chat Task
+                    // Chat Task
                     new ChatTask().execute(aiRequest);
                 } else {
                     aiService.startListening();
@@ -176,6 +176,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
     }
 
+    // Call text response from API
     public class ChatTask extends AsyncTask<AIRequest, Void, AIResponse> {
         @Override
         protected AIResponse doInBackground(AIRequest... aiRequests) {
@@ -200,6 +201,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
         }
     }
 
+    // Change icon when input text
     public void ImageViewAnimatedChange(Context c, final ImageView v, final Bitmap new_image) {
         final Animation anim_out = AnimationUtils.loadAnimation(c, R.anim.zoom_out);
         final Animation anim_in = AnimationUtils.loadAnimation(c, R.anim.zoom_in);
@@ -271,6 +273,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
     }
 
+    // Back button
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

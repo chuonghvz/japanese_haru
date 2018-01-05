@@ -27,23 +27,23 @@
         android:id="@+id/totalLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/spinner"
-        android:layout_marginTop="23dp"
         android:layout_marginLeft="16dp"
-        android:textSize="16dp"
-        android:text="Total words:"/>
+        android:layout_marginTop="23dp"
+        android:layout_toRightOf="@id/spinner"
+        android:text="Total words:"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/totalValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/totalLabel"
-        android:layout_marginTop="23dp"
-        android:textSize="16dp"
-        android:textColor="@color/black"
         android:layout_marginLeft="4dp"
-        android:textStyle="bold"
-        android:text="80"/>
+        android:layout_marginTop="23dp"
+        android:layout_toRightOf="@id/totalLabel"
+        android:text="80"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
 
     <ScrollView
@@ -61,5 +61,15 @@
         </android.support.v7.widget.RecyclerView>
 
     </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_searching_magnifying_glass"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp" />
 
 </RelativeLayout>

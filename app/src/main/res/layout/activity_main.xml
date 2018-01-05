@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/navigation_action"
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -25,14 +25,6 @@
             android:layout_weight="1">
 
         </FrameLayout>
-
-        <!--<android.support.design.widget.BottomNavigationView-->
-            <!--android:id="@+id/navigation"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="bottom"-->
-            <!--android:background="?android:attr/windowBackground"-->
-            <!--app:menu="@menu/navigation_bottom"/>-->
 
     </LinearLayout>
 

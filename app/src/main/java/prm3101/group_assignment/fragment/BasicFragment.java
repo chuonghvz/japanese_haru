@@ -61,7 +61,7 @@ public class BasicFragment extends Fragment {
         Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(new HiraFragment(), "Hiragana");
         adapter.addFragment(new KanjiFragment(), "Kanji");
-        adapter.addFragment(new SearchFragment(), "Search");
+        adapter.addFragment(new SearchFragment(), "Chatbot");
         viewPager.setAdapter(adapter);
     }
 

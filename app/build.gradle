@@ -31,25 +31,25 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:recyclerview-v7:26.+'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:support-v4:23.0.0'
-    compile 'com.google.code.gson:gson:2.8.1'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.android.support:cardview-v7:24.2.1'
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
-    compile 'com.google.firebase:firebase-database:11.8.0'
-    compile 'com.firebaseui:firebase-ui-database:2.3.0'
-    compile 'ai.api:sdk:2.0.7@aar'
-    compile 'ai.api:libai:1.6.12'
-    compile 'commons-io:commons-io:2.4'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:26.0.1'
+    implementation 'com.android.support:recyclerview-v7:26.0.1'
+    implementation 'com.android.support:design:26.0.1'
+    implementation 'com.android.support:support-v4:26.0.1'
+    implementation 'com.google.code.gson:gson:2.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.android.support:cardview-v7:24.2.1'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
+    implementation 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.firebaseui:firebase-ui-database:2.3.0'
+    implementation 'ai.api:sdk:2.0.7@aar'
+    implementation 'ai.api:libai:1.6.12'
+    implementation 'commons-io:commons-io:2.4'
 
 }
 

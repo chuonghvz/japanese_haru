@@ -1,4 +1,4 @@
-# Learn Kanji with Haru
+# japanese_haru
 Android app to lean Kanji in Japanese with Haru (AI chatbot)
 
 Home scene

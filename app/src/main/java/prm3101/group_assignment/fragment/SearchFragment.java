@@ -171,7 +171,6 @@ public class SearchFragment extends Fragment implements AIListener {
                 super.onItemRangeInserted(positionStart, itemCount);
                 int msgCount = chatbotAdapter.getItemCount();
                 int lastVisiblePosition = linearLayoutManager.findLastCompletelyVisibleItemPosition();
-                Log.e("aaa", " " + lastVisiblePosition);
                 if (lastVisiblePosition == -1 ||
                         (positionStart >= (msgCount - 1) &&
                                 lastVisiblePosition == (positionStart - 1))) {

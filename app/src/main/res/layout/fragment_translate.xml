@@ -4,11 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context="prm3101.group_assignment.activity.TranslateActivity">
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+    tools:context="prm3101.group_assignment.fragment.TranslateFragment">
 
     <RelativeLayout
         android:id="@+id/input"
@@ -22,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="English"
             android:textColor="@color/colorPrimaryDark_v2"
             android:textSize="16dp" />
@@ -33,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="Japanese"
             android:textColor="@color/colorPrimaryDark_v2"
             android:textSize="16dp" />
@@ -43,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/ic_compare" />
 
         <View
@@ -51,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/compareArrow"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@color/grey_line" />
 
         <RelativeLayout
@@ -66,7 +62,7 @@
                 android:id="@+id/inputVolume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="12dp"
                 android:src="@drawable/ic_volume_up_black_24dp" />
 
             <TextView
@@ -95,8 +91,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/result"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             android:backgroundTint="@android:color/transparent"
             android:hint="Tap to enter text"
             android:inputType="text"
@@ -126,9 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/input"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:background="@color/white">
 
         <ImageView

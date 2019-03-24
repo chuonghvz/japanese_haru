@@ -1,6 +1,7 @@
 package prm3101.group_assignment.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -39,6 +40,7 @@ import ai.api.model.Result;
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.adapter.ChatbotAdapter;
 import prm3101.group_assignment.data.ChatMessage;
+import prm3101.group_assignment.fragment.HiraFragment;
 import prm3101.group_assignment.util.Utilities;
 
 
@@ -65,15 +67,15 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
         setContentView(R.layout.activity_chatbot);
 
         //Set toolbar
-        TextView mToolbarText = (TextView) findViewById(R.id.toolbar_text);
+        TextView mToolbarText = findViewById(R.id.toolbar_text);
         mToolbarText.setText(R.string.chatbot);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        mInputText = (EditText) findViewById(R.id.inputText);
-        voiceBtn = (RelativeLayout) findViewById(R.id.voiceBtn);
-        recyclerView = (RecyclerView) findViewById(R.id.chatData);
+        mInputText = findViewById(R.id.inputText);
+        voiceBtn = findViewById(R.id.voiceBtn);
+        recyclerView = findViewById(R.id.chatData);
         recyclerView.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
@@ -273,10 +275,10 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
     }
 
-    // Back button
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+        Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainActivity);
         return true;
     }
 }

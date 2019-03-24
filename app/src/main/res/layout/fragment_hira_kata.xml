@@ -3,14 +3,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!--<Spinner-->
-        <!--android:id="@+id/spinner"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:spinnerMode="dropdown"/>-->
-
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
@@ -23,12 +15,14 @@
             android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="Hiragana"/>
 
         <RadioButton
             android:id="@+id/rdKatakana"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="katakana"
             android:layout_marginStart="10dp"/>
 

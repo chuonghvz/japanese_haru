@@ -42,10 +42,6 @@ public class KanjiFragment extends Fragment {
     private Spinner dropdown;
     private FloatingActionButton mSearch;
 
-    public KanjiFragment() {
-        // Required empty public constructor
-    }
-
     public static KanjiFragment newInstance() {
         return new KanjiFragment();
     }
@@ -111,7 +107,6 @@ public class KanjiFragment extends Fragment {
                             KanjiLevelAdapter N5_adapter = new KanjiLevelAdapter(getContext(), N5_level);
                             mTotalValue.setText("" + N5_level.size());
                             mKanjiLevel.setAdapter(N5_adapter);
-                            Log.e("aaaa", "co click");
                             break;
                         case 1:
                             KanjiLevelAdapter N4_adapter = new KanjiLevelAdapter(getContext(), N4_level);

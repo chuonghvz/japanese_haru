@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.fragment.HiraFragment;
 import prm3101.group_assignment.fragment.KanjiFragment;
+import prm3101.group_assignment.fragment.TranslateFragment;
 import prm3101.group_assignment.util.Utilities;
 
 public class MainActivity extends AppCompatActivity{
@@ -47,9 +48,11 @@ public class MainActivity extends AppCompatActivity{
                 Utilities.startFragment(getSupportFragmentManager(), KanjiFragment.newInstance());
                 break;
             case R.id.chatbot:
-//                Utilities.startFragment(getSupportFragmentManager(), SearchFragment.newInstance());
-                Intent goToNextActivity = new Intent(getApplicationContext(), ChatbotActivity.class);
-                startActivity(goToNextActivity);
+                Intent chatBotActivity = new Intent(getApplicationContext(), ChatbotActivity.class);
+                startActivity(chatBotActivity);
+                break;
+            case R.id.translate:
+                Utilities.startFragment(getSupportFragmentManager(), TranslateFragment.newInstance());
                 break;
         }
         return true;

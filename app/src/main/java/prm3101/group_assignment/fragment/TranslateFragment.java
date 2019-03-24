@@ -1,14 +1,15 @@
-package prm3101.group_assignment.activity;
+package prm3101.group_assignment.fragment;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.os.AsyncTask;
+import android.content.Context;
 import android.speech.tts.TextToSpeech;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -29,9 +30,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TranslateActivity extends AppCompatActivity {
+public class TranslateFragment extends Fragment {
 
-    private final String TAG = "TranslateActivity";
     private APIService mService;
     private TextToSpeech speech;
     private RelativeLayout mOutputView, mResultView;
@@ -41,30 +41,33 @@ public class TranslateActivity extends AppCompatActivity {
     private ClipData myClip;
 
 
+    public static TranslateFragment newInstance() {
+        return new TranslateFragment();
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_translate);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        TextView mToolbarText = (TextView) findViewById(R.id.toolbar_text);
-        mToolbarText.setText(R.string.translate);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        mCompareArrow = (ImageView) findViewById(R.id.compareArrow);
-        mTranslate = (ImageView) findViewById(R.id.translate);
-        mClear = (ImageView) findViewById(R.id.clear);
-        mCopy = (ImageView) findViewById(R.id.copy);
-        mInputVolume = (ImageView) findViewById(R.id.inputVolume);
-        mOutputVolume = (ImageView) findViewById(R.id.outputVolume);
-        mFromLanguage = (TextView) findViewById(R.id.fromLanguage);
-        mFromLanguage_2 = (TextView) findViewById(R.id.fromLanguage_2);
-        mToLanguage = (TextView) findViewById(R.id.toLanguage);
-        mToLanguage_2 = (TextView) findViewById(R.id.toLanguage_2);
-        mInputText = (TextView) findViewById(R.id.inputText);
-        mOutputText = (TextView) findViewById(R.id.outputText);
-        mOutputView = (RelativeLayout) findViewById(R.id.output);
-        mResultView = (RelativeLayout) findViewById(R.id.result);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_translate, container, false);
+
+        mCompareArrow = view.findViewById(R.id.compareArrow);
+        mTranslate = view.findViewById(R.id.translate);
+        mClear = view.findViewById(R.id.clear);
+        mCopy = view.findViewById(R.id.copy);
+        mInputVolume = view.findViewById(R.id.inputVolume);
+        mOutputVolume = view.findViewById(R.id.outputVolume);
+        mFromLanguage = view.findViewById(R.id.fromLanguage);
+        mFromLanguage_2 = view.findViewById(R.id.fromLanguage_2);
+        mToLanguage = view.findViewById(R.id.toLanguage);
+        mToLanguage_2 = view.findViewById(R.id.toLanguage_2);
+        mInputText = view.findViewById(R.id.inputText);
+        mOutputText = view.findViewById(R.id.outputText);
+        mOutputView = view.findViewById(R.id.output);
+        mResultView = view.findViewById(R.id.result);
 
         mOutputView.setVisibility(View.GONE);
         mResultView.setVisibility(View.GONE);
@@ -74,10 +77,10 @@ public class TranslateActivity extends AppCompatActivity {
         mCompareArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Animation startRotateAnimation = AnimationUtils.loadAnimation(getApplicationContext(),
+                Animation startRotateAnimation = AnimationUtils.loadAnimation(getContext(),
                         R.anim.android_rotate_animation);
                 mCompareArrow.startAnimation(startRotateAnimation);
-                mFromLanguage.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),
+                mFromLanguage.startAnimation(AnimationUtils.loadAnimation(getContext(),
                         R.anim.from_language_move));
                 if (mFromLanguage.getText().toString().equalsIgnoreCase("english")) {
                     mFromLanguage.setText(R.string.japanese);
@@ -86,7 +89,7 @@ public class TranslateActivity extends AppCompatActivity {
                     mFromLanguage.setText(R.string.english);
                     mFromLanguage_2.setText(R.string.english);
                 }
-                mToLanguage.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),
+                mToLanguage.startAnimation(AnimationUtils.loadAnimation(getContext(),
                         R.anim.to_language_move));
                 if (mToLanguage.getText().toString().equalsIgnoreCase("japanese")) {
                     mToLanguage.setText(R.string.english);
@@ -108,8 +111,8 @@ public class TranslateActivity extends AppCompatActivity {
 
                 InputMethodManager inputManager =
                         (InputMethodManager)
-                                getSystemService(TranslateActivity.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                                getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
 
                 //Call Api
@@ -134,8 +137,6 @@ public class TranslateActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<TranslateResponse> call, Throwable t) {
-                        Log.e(TAG, "Fail - " + t.toString());
-                        Toast.makeText(TranslateActivity.this, R.string.no_result, Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -156,7 +157,7 @@ public class TranslateActivity extends AppCompatActivity {
         mInputVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                speech = new TextToSpeech(TranslateActivity.this, new TextToSpeech.OnInitListener() {
+                speech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
                     @Override
                     public void onInit(int status) {
                         if (status != TextToSpeech.ERROR) {
@@ -172,7 +173,7 @@ public class TranslateActivity extends AppCompatActivity {
         mOutputVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                speech = new TextToSpeech(TranslateActivity.this, new TextToSpeech.OnInitListener() {
+                speech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
                     @Override
                     public void onInit(int status) {
                         if (status != TextToSpeech.ERROR) {
@@ -186,18 +187,18 @@ public class TranslateActivity extends AppCompatActivity {
         });
 
         //Copy Translate text
-        myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+        myClipboard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         mCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String text = mOutputText.getText().toString();
                 myClip = ClipData.newPlainText("text", text);
                 myClipboard.setPrimaryClip(myClip);
-                Toast.makeText(getApplicationContext(), "Text Copied",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Text Copied", Toast.LENGTH_SHORT).show();
             }
         });
 
+        return view;
     }
 
     @Override
@@ -209,9 +210,4 @@ public class TranslateActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
 }

@@ -1,7 +1,6 @@
 package prm3101.group_assignment.fragment;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,25 +8,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.json.JSONArray;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import prm3101.group_assignment.R;
-import prm3101.group_assignment.util.Utils;
+import prm3101.group_assignment.util.Utilities;
 
 
 public class BasicFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private Utils utils = new Utils();
+    private Utilities utils = new Utilities();
 
     public BasicFragment() {
         // Required empty public constructor

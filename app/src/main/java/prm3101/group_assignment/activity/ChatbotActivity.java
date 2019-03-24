@@ -39,14 +39,14 @@ import ai.api.model.Result;
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.adapter.ChatbotAdapter;
 import prm3101.group_assignment.data.ChatMessage;
-import prm3101.group_assignment.util.Utils;
+import prm3101.group_assignment.util.Utilities;
 
 
 public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
     private final String TOKEN = "e5e179ae84db475facaf659427ce5904";
     private RecyclerView recyclerView;
-    private Utils utils = new Utils();
+    private Utilities utils = new Utilities();
     private EditText mInputText;
     private RelativeLayout voiceBtn;
     private DatabaseReference ref;

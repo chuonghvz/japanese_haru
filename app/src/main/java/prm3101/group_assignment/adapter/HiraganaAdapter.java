@@ -17,7 +17,7 @@ import prm3101.group_assignment.R;
 
 public class HiraganaAdapter extends BaseAdapter {
 
-    private final ArrayList<String[]> hiras;
+    private ArrayList<String[]> hiras;
 
     private Context mContext;
 
@@ -26,6 +26,9 @@ public class HiraganaAdapter extends BaseAdapter {
         this.mContext = mContext;
     }
 
+    public void setHiras(ArrayList<String[]> hiras) {
+        this.hiras = hiras;
+    }
 
     @Override
     public int getCount() {

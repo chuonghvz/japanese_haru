@@ -7,14 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import prm3101.group_assignment.R;
-import prm3101.group_assignment.util.Utils;
+import prm3101.group_assignment.util.Utilities;
 
 public class SplashActivity extends AppCompatActivity {
 
     protected int _splashTime = 1000;
     private SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
-    private Utils utils = new Utils();
+    private Utilities utils = new Utilities();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

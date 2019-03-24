@@ -8,45 +8,36 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.activity.SearchActivity;
-import prm3101.group_assignment.adapter.HiraganaAdapter;
-import prm3101.group_assignment.adapter.KanjiAdapter;
 import prm3101.group_assignment.adapter.KanjiLevelAdapter;
-import prm3101.group_assignment.data.Kanji;
 import prm3101.group_assignment.data.KanjiLevel;
-import prm3101.group_assignment.util.Utils;
+import prm3101.group_assignment.util.Utilities;
 
 
 public class KanjiFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
     private RecyclerView mKanjiLevel;
+    private EditText searchBar;
     private TextView mTotalValue;
-    private Utils utils = new Utils();
+    private Utilities utils = new Utilities();
     private SharedPreferences prefs;
     private Spinner dropdown;
     private FloatingActionButton mSearch;
@@ -55,26 +46,23 @@ public class KanjiFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static KanjiFragment newInstance(String param1, String param2) {
+    public static KanjiFragment newInstance() {
         return new KanjiFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            // to do
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_kanji, container, false);
-        dropdown = (Spinner) v.findViewById(R.id.spinner);
-        mKanjiLevel = (RecyclerView) v.findViewById(R.id.kanjiLevel);
-        mTotalValue = (TextView) v.findViewById(R.id.totalValue);
-        mSearch = v.findViewById(R.id.searchButton);
+        dropdown = v.findViewById(R.id.spinner);
+        mKanjiLevel = v.findViewById(R.id.kanjiLevel);
+        mTotalValue = v.findViewById(R.id.totalValue);
+        searchBar = v.findViewById(R.id.searchValue);
 
         final ArrayList<KanjiLevel> temp = new ArrayList<>();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -89,15 +77,6 @@ public class KanjiFragment extends Fragment {
 
         // Update View with Kanji level data
         new UpdateView().execute();
-
-        // Search button event
-        mSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SearchActivity.class);
-                startActivity(intent);
-            }
-        });
 
         return v;
     }
@@ -167,31 +146,4 @@ public class KanjiFragment extends Fragment {
         }
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

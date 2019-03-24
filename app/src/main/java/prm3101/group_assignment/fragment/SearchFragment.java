@@ -39,15 +39,14 @@ import prm3101.group_assignment.R;
 import prm3101.group_assignment.activity.SearchActivity;
 import prm3101.group_assignment.adapter.ChatbotAdapter;
 import prm3101.group_assignment.data.ChatMessage;
-import prm3101.group_assignment.util.Utils;
+import prm3101.group_assignment.util.Utilities;
 
 
 public class SearchFragment extends Fragment implements AIListener {
 
-    private OnFragmentInteractionListener mListener;
     private final String TOKEN = "e5e179ae84db475facaf659427ce5904";
     private RecyclerView recyclerView;
-    private Utils utils = new Utils();
+    private Utilities utils = new Utilities();
     private EditText mInputText;
     private RelativeLayout voiceBtn;
     private DatabaseReference ref;
@@ -64,7 +63,7 @@ public class SearchFragment extends Fragment implements AIListener {
         // Required empty public constructor
     }
 
-    public static SearchFragment newInstance(String param1, String param2) {
+    public static SearchFragment newInstance() {
         return new SearchFragment();
     }
 
@@ -284,30 +283,4 @@ public class SearchFragment extends Fragment implements AIListener {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

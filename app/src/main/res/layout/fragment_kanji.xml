@@ -3,73 +3,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="23dp"
-        android:text="Choose level:"
-        android:textColor="@color/black"
-        android:textSize="16dp" />
-
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+    <include
+        android:id="@+id/toolbarSearch"
+        layout="@layout/toolbar_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/level"
-        android:spinnerMode="dropdown" />
+        android:layout_marginRight="10dp" />
 
-    <TextView
-        android:id="@+id/totalLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="23dp"
-        android:layout_toRightOf="@id/spinner"
-        android:text="Total words:"
-        android:textSize="16dp" />
-
-    <TextView
-        android:id="@+id/totalValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="23dp"
-        android:layout_toRightOf="@id/totalLabel"
-        android:text="80"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold" />
-
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinner"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_below="@id/toolbarSearch">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/kanjiLevel"
+        <TextView
+            android:id="@+id/level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="23dp"
+            android:text="Choose level:"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/level"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/totalLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="23dp"
+            android:layout_toRightOf="@id/spinner"
+            android:text="Total words:"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/totalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="23dp"
+            android:layout_toRightOf="@id/totalLabel"
+            android:text="80"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinner"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/kanjiLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </ScrollView>
+            </android.support.v7.widget.RecyclerView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/searchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_searching_magnifying_glass"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp" />
+        </ScrollView>
+
+    </RelativeLayout>
 
 </RelativeLayout>

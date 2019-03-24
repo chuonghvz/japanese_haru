@@ -2,97 +2,58 @@ package prm3101.group_assignment.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-
 import prm3101.group_assignment.R;
-import prm3101.group_assignment.fragment.BasicFragment;
-import prm3101.group_assignment.util.Utils;
+import prm3101.group_assignment.fragment.HiraFragment;
+import prm3101.group_assignment.fragment.KanjiFragment;
+import prm3101.group_assignment.util.Utilities;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity{
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
+    BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.nav_action);
-        TextView mToolbarText = (TextView) findViewById(R.id.toolbar_text);
-        mToolbarText.setText(R.string.home);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.temp, R.string.temp);
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.content, new BasicFragment()).commit();
-        setNavigationViewListner();
+//        Toolbar mToolbar = (Toolbar) findViewById(R.id.nav_action);
+//        TextView mToolbarText = (TextView) findViewById(R.id.toolbar_text);
+//        mToolbarText.setText(R.string.home);
+//        setSupportActionBar(mToolbar);
+
+        navigationView = findViewById(R.id.bottom_navigation);
+        Utilities.disableShiftMode(navigationView);
+        initView();
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void initView(){
+        navigationView.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
     }
 
-
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        FragmentManager fragmentManager = getSupportFragmentManager();
+    protected void onResume() {
+        super.onResume();
+        Utilities.startFragment(getSupportFragmentManager(), HiraFragment.newInstance());
+    }
+
+    private boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.basic: {
-                fragmentManager.beginTransaction().replace(R.id.content, new BasicFragment()).commit();
+            case R.id.basic:
+                Utilities.startFragment(getSupportFragmentManager(), HiraFragment.newInstance());
                 break;
-            }
-
-            case R.id.search_word: {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-                startActivity(intent);
+            case R.id.kanji:
+                Utilities.startFragment(getSupportFragmentManager(), KanjiFragment.newInstance());
                 break;
-            }
-
-            case R.id.translate: {
-                Intent intent = new Intent(getApplicationContext(), TranslateActivity.class);
-                startActivity(intent);
-                break;
-            }
-
-            case R.id.chatbot: {
-                Intent intent = new Intent(getApplicationContext(), ChatbotActivity.class);
-                startActivity(intent);
-                break;
-            }
-
-            default:
+            case R.id.chatbot:
+//                Utilities.startFragment(getSupportFragmentManager(), SearchFragment.newInstance());
+                Intent goToNextActivity = new Intent(getApplicationContext(), ChatbotActivity.class);
+                startActivity(goToNextActivity);
                 break;
         }
-
-        //close navigation drawer
-        mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void setNavigationViewListner() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
+
 }

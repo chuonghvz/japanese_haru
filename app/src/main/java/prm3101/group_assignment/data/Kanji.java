@@ -21,24 +21,12 @@ public class Kanji implements Serializable{
         return kanji;
     }
 
-    public void setKanji(String kanji) {
-        this.kanji = kanji;
-    }
-
     public String getMeaning() {
         return meaning;
     }
 
-    public void setMeaning(String meaning) {
-        this.meaning = meaning;
-    }
-
     public String getKanjiData() {
         return kanjiData;
-    }
-
-    public void setKanjiData(String kanjiData) {
-        this.kanjiData = kanjiData;
     }
 
 }

@@ -3,7 +3,6 @@ package prm3101.group_assignment.fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +40,7 @@ import prm3101.group_assignment.data.ChatMessage;
 import prm3101.group_assignment.util.Utilities;
 
 
-public class SearchFragment extends Fragment implements AIListener {
+public class ChatbotFragment extends Fragment implements AIListener {
 
     private final String TOKEN = "e5e179ae84db475facaf659427ce5904";
     private RecyclerView recyclerView;
@@ -59,12 +57,12 @@ public class SearchFragment extends Fragment implements AIListener {
     final AIDataService aiDataService = new AIDataService(config);
     final AIRequest aiRequest = new AIRequest();
 
-    public SearchFragment() {
+    public ChatbotFragment() {
         // Required empty public constructor
     }
 
-    public static SearchFragment newInstance() {
-        return new SearchFragment();
+    public static ChatbotFragment newInstance() {
+        return new ChatbotFragment();
     }
 
     @Override
@@ -79,7 +77,7 @@ public class SearchFragment extends Fragment implements AIListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View v = inflater.inflate(R.layout.fragment_search, container, false);
+        final View v = inflater.inflate(R.layout.fragment_chatbot, container, false);
 
         mInputText = (EditText) v.findViewById(R.id.inputText);
         voiceBtn = (RelativeLayout) v.findViewById(R.id.voiceBtn);

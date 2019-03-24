@@ -11,7 +11,6 @@ import prm3101.group_assignment.util.Utilities;
 
 public class SplashActivity extends AppCompatActivity {
 
-    protected int _splashTime = 1000;
     private SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
     private Utilities utils = new Utilities();
@@ -30,14 +29,8 @@ public class SplashActivity extends AppCompatActivity {
                     sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     editor.putString("All_KANJI", allKanji);
-                    editor.commit();
-//                    int waited = 0;
-//                    while (waited < _splashTime) {
-//                        sleep(100);
-//                        waited += 100;
-//                    }
-                } catch (Exception e) {
-                    // do nothing
+                    editor.apply();
+                } catch (Exception ignored) {
                 } finally {
                     finish();
                     Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);

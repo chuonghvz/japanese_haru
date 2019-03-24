@@ -1,5 +1,6 @@
 package prm3101.group_assignment.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,15 +46,17 @@ public class HiraganaAdapter extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View gridView = convertView;
         if(convertView == null){
             LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert mInflater != null;
             gridView = mInflater.inflate(R.layout.items_hiragana, null);
         }
-        TextView hira = (TextView) gridView.findViewById(R.id.hira);
-        TextView romaji = (TextView) gridView.findViewById(R.id.romaji);
+        TextView hira = gridView.findViewById(R.id.hira);
+        TextView romaji = gridView.findViewById(R.id.romaji);
         hira.setText(hiras.get(position)[0]);
         romaji.setText(hiras.get(position)[1]);
         return gridView;

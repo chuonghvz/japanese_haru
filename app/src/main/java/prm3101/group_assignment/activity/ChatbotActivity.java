@@ -1,5 +1,6 @@
 package prm3101.group_assignment.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,12 +23,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+import java.util.Objects;
 import ai.api.AIDataService;
 import ai.api.AIListener;
 import ai.api.AIServiceException;
@@ -40,17 +39,13 @@ import ai.api.model.Result;
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.adapter.ChatbotAdapter;
 import prm3101.group_assignment.data.ChatMessage;
-import prm3101.group_assignment.fragment.HiraFragment;
-import prm3101.group_assignment.util.Utilities;
 
 
 public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
     private final String TOKEN = "e5e179ae84db475facaf659427ce5904";
     private RecyclerView recyclerView;
-    private Utilities utils = new Utilities();
     private EditText mInputText;
-    private RelativeLayout voiceBtn;
     private DatabaseReference ref;
     private FirebaseRecyclerAdapter<ChatMessage, ChatbotAdapter> chatbotAdapter;
     private Boolean flagFab = true;
@@ -71,10 +66,10 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
         mToolbarText.setText(R.string.chatbot);
         Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mInputText = findViewById(R.id.inputText);
-        voiceBtn = findViewById(R.id.voiceBtn);
+        RelativeLayout voiceBtn = findViewById(R.id.voiceBtn);
         recyclerView = findViewById(R.id.chatData);
         recyclerView.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -90,23 +85,20 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
         aiService.setListener(this);
 
         // Voice/Sent button click
-        voiceBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String message = mInputText.getText().toString().trim();
-                if (!message.equals("")) {
-                    ChatMessage chatMessage = new ChatMessage(message, "user");
-                    ref.child("chat").push().setValue(chatMessage);
-                    aiRequest.setQuery(message);
-                    // Chat Task
-                    new ChatTask().execute(aiRequest);
-                } else {
-                    aiService.startListening();
-                }
-                mInputText.setText("");
-                InputMethodManager in = (InputMethodManager) getSystemService(SearchActivity.INPUT_METHOD_SERVICE);
-                in.hideSoftInputFromWindow(mInputText.getWindowToken(), 0);
+        voiceBtn.setOnClickListener(view -> {
+            String message = mInputText.getText().toString().trim();
+            if (!message.equals("")) {
+                ChatMessage chatMessage = new ChatMessage(message, "user");
+                ref.child("chat").push().setValue(chatMessage);
+                aiRequest.setQuery(message);
+                // Chat Task
+                new ChatTask().execute(aiRequest);
+            } else {
+                aiService.startListening();
             }
+            mInputText.setText("");
+            InputMethodManager in = (InputMethodManager) getSystemService(SearchActivity.INPUT_METHOD_SERVICE);
+            in.hideSoftInputFromWindow(mInputText.getWindowToken(), 0);
         });
 
         // Input EditText click
@@ -118,7 +110,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
             @Override
             public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-                ImageView fab_img = (ImageView) findViewById(R.id.fab_img);
+                ImageView fab_img = findViewById(R.id.fab_img);
                 Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.ic_send_white_24dp);
                 Bitmap img1 = BitmapFactory.decodeResource(getResources(), R.drawable.ic_mic_white_24dp);
 
@@ -179,14 +171,13 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
     }
 
     // Call text response from API
+    @SuppressLint("StaticFieldLeak")
     public class ChatTask extends AsyncTask<AIRequest, Void, AIResponse> {
         @Override
         protected AIResponse doInBackground(AIRequest... aiRequests) {
-            final AIRequest request = aiRequests[0];
             try {
-                final AIResponse response = aiDataService.request(aiRequest);
-                return response;
-            } catch (AIServiceException e) {
+                return aiDataService.request(aiRequest);
+            } catch (AIServiceException ignored) {
             }
             return null;
         }

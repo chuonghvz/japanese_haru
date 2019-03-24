@@ -21,32 +21,12 @@ public class KanjiExample implements Serializable{
         return hira;
     }
 
-    public void setHira(String hira) {
-        this.hira = hira;
-    }
-
     public String getMeaning() {
         return meaning;
-    }
-
-    public void setMeaning(String meaning) {
-        this.meaning = meaning;
     }
 
     public String getAudio() {
         return audio;
     }
 
-    public void setAudio(String audio) {
-        this.audio = audio;
-    }
-
-    @Override
-    public String toString() {
-        return "KanjiExample{" +
-                "hira='" + hira + '\'' +
-                ", meaning='" + meaning + '\'' +
-                ", audio='" + audio + '\'' +
-                '}';
-    }
 }

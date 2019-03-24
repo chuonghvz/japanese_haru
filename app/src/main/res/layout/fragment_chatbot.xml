@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="prm3101.group_assignment.fragment.SearchFragment">
+    tools:context="prm3101.group_assignment.fragment.ChatbotFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/chatData"

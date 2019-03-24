@@ -2,19 +2,15 @@ package prm3101.group_assignment.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.activity.KanjiDetailActivity;
-import prm3101.group_assignment.data.Kanji;
 import prm3101.group_assignment.data.KanjiLevel;
 
 /**
@@ -41,28 +37,22 @@ public class KanjiLevelAdapter extends RecyclerView.Adapter<KanjiLevelAdapter.Vi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final KanjiLevel data = mData.get(position);
-        holder.number.setText("" + (position + 1));
+        holder.number.setText(String.valueOf((position + 1)));
         holder.character.setText(data.getCharacter());
         holder.mean.setText(data.getMean());
         holder.onyomi.setText(data.getOnyomi());
         holder.kunyomi.setText(data.getKunyomi());
-        holder.bookmark_uncheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (holder.bookmark_check.getVisibility() == View.INVISIBLE) {
-                    holder.bookmark_check.setVisibility(View.VISIBLE);
-                } else {
-                    holder.bookmark_check.setVisibility(View.INVISIBLE);
-                }
+        holder.bookmark_uncheck.setOnClickListener(view -> {
+            if (holder.bookmark_check.getVisibility() == View.INVISIBLE) {
+                holder.bookmark_check.setVisibility(View.VISIBLE);
+            } else {
+                holder.bookmark_check.setVisibility(View.INVISIBLE);
             }
         });
-        holder.item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, KanjiDetailActivity.class);
-                intent.putExtra("kanjiData", data.getKanjiData());
-                mContext.startActivity(intent);
-            }
+        holder.item.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, KanjiDetailActivity.class);
+            intent.putExtra("kanjiData", data.getKanjiData());
+            mContext.startActivity(intent);
         });
     }
 
@@ -71,27 +61,22 @@ public class KanjiLevelAdapter extends RecyclerView.Adapter<KanjiLevelAdapter.Vi
         return mData.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder{
         TextView character, number, mean, onyomi, kunyomi;
         ImageView audio, bookmark_uncheck, bookmark_check;
         View item;
 
-        public ViewHolder(View itemView) {
+        private ViewHolder(View itemView) {
             super(itemView);
-            number = (TextView) itemView.findViewById(R.id.number);
-            character = (TextView) itemView.findViewById(R.id.character);
-            audio = (ImageView) itemView.findViewById(R.id.volume);
-            bookmark_uncheck = (ImageView) itemView.findViewById(R.id.bookmark_uncheck);
-            bookmark_check = (ImageView) itemView.findViewById(R.id.bookmark_check);
-            mean = (TextView) itemView.findViewById(R.id.meanValue);
-            onyomi = (TextView) itemView.findViewById(R.id.onValue);
-            kunyomi = (TextView) itemView.findViewById(R.id.kunValue);
+            number = itemView.findViewById(R.id.number);
+            character = itemView.findViewById(R.id.character);
+            audio = itemView.findViewById(R.id.volume);
+            bookmark_uncheck = itemView.findViewById(R.id.bookmark_uncheck);
+            bookmark_check = itemView.findViewById(R.id.bookmark_check);
+            mean = itemView.findViewById(R.id.meanValue);
+            onyomi = itemView.findViewById(R.id.onValue);
+            kunyomi = itemView.findViewById(R.id.kunValue);
             item = itemView;
-        }
-
-        @Override
-        public void onClick(View view) {
-            //to do
         }
     }
 }

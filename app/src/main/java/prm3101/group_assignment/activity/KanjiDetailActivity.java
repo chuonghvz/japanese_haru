@@ -1,30 +1,21 @@
 package prm3101.group_assignment.activity;
 
-import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
+import java.util.Objects;
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.adapter.ExampleAdapter;
-import prm3101.group_assignment.adapter.KanjiAdapter;
-import prm3101.group_assignment.data.Kanji;
 import prm3101.group_assignment.data.KanjiExample;
 
 public class KanjiDetailActivity extends AppCompatActivity {
@@ -35,18 +26,18 @@ public class KanjiDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kanji_detail);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView mTitle = (TextView) findViewById(R.id.toolbar_text);
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+        TextView mTitle = findViewById(R.id.toolbar_text);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        TextView mMean = (TextView) findViewById(R.id.mean);
-        TextView mOnHira = (TextView) findViewById(R.id.onHira);
-        TextView mOnRead = (TextView) findViewById(R.id.onRead);
-        TextView mKuHira = (TextView) findViewById(R.id.kuHira);
-        TextView mKuRead = (TextView) findViewById(R.id.kuRead);
-        mVideoView = (VideoView) findViewById(R.id.videoView);
-        ImageView mReplay = (ImageView) findViewById(R.id.replay);
+        TextView mMean = findViewById(R.id.mean);
+        TextView mOnHira = findViewById(R.id.onHira);
+        TextView mOnRead = findViewById(R.id.onRead);
+        TextView mKuHira = findViewById(R.id.kuHira);
+        TextView mKuRead = findViewById(R.id.kuRead);
+        mVideoView = findViewById(R.id.videoView);
+        ImageView mReplay = findViewById(R.id.replay);
 
 
         // Set data
@@ -55,19 +46,11 @@ public class KanjiDetailActivity extends AppCompatActivity {
             String videoLink = kanjiData.getJSONObject("kanji").getJSONObject("video").getString("mp4");
             Uri video = Uri.parse(videoLink);
             mVideoView.setVideoURI(video);
-            mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    mp.setLooping(false);
-                    mVideoView.start();
-                }
+            mVideoView.setOnPreparedListener(mp -> {
+                mp.setLooping(false);
+                mVideoView.start();
             });
-            mReplay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mVideoView.start();
-                }
-            });
+            mReplay.setOnClickListener(view -> mVideoView.start());
             String title = kanjiData.getJSONObject("kanji").getString("character");
             String mean = kanjiData.getJSONObject("kanji").getJSONObject("meaning").getString("english");
             String onyomi_romaji = kanjiData.getJSONObject("kanji").getJSONObject("onyomi")
@@ -84,10 +67,11 @@ public class KanjiDetailActivity extends AppCompatActivity {
             mOnRead.setText(onyomi_romaji);
             mKuHira.setText(kunyomi_hiragana);
             mKuRead.setText(kunyomi_romaji);
+
             //Example list
             JSONArray listExample = kanjiData.getJSONArray("examples");
             ArrayList<KanjiExample> data = new ArrayList<>();
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.exampleList);
+            RecyclerView recyclerView = findViewById(R.id.exampleList);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(KanjiDetailActivity.this);
             recyclerView.setLayoutManager(layoutManager);
             ExampleAdapter adapter = new ExampleAdapter(KanjiDetailActivity.this, data);
@@ -106,10 +90,6 @@ public class KanjiDetailActivity extends AppCompatActivity {
         }
 
     }
-
-//    public class UpdateView extends AsyncTask<String, void, JSONObject>{
-//
-//    }
 
     @Override
     public boolean onSupportNavigateUp() {

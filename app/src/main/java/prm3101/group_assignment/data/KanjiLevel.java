@@ -25,58 +25,19 @@ public class KanjiLevel {
         return character;
     }
 
-    public void setCharacter(String character) {
-        this.character = character;
-    }
-
-    public String getSound() {
-        return sound;
-    }
-
-    public void setSound(String sound) {
-        this.sound = sound;
-    }
-
     public String getMean() {
         return mean;
-    }
-
-    public void setMean(String mean) {
-        this.mean = mean;
     }
 
     public String getOnyomi() {
         return onyomi;
     }
 
-    public void setOnyomi(String onyomi) {
-        this.onyomi = onyomi;
-    }
-
     public String getKunyomi() {
         return kunyomi;
     }
 
-    public void setKunyomi(String kunyomi) {
-        this.kunyomi = kunyomi;
-    }
-
     public String getKanjiData() {
         return kanjiData;
-    }
-
-    public void setKanjiData(String kanjiData) {
-        this.kanjiData = kanjiData;
-    }
-
-    @Override
-    public String toString() {
-        return "KanjiLevel{" +
-                "character='" + character + '\'' +
-                ", sound='" + sound + '\'' +
-                ", mean='" + mean + '\'' +
-                ", onyomi='" + onyomi + '\'' +
-                ", kunyomi='" + kunyomi + '\'' +
-                '}';
     }
 }

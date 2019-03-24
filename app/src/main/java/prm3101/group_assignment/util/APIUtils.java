@@ -5,7 +5,7 @@ package prm3101.group_assignment.util;
  */
 
 public class APIUtils {
-    public static final String BASE_URL = "https://api.mymemory.translated.net/";
+    private static final String BASE_URL = "https://api.mymemory.translated.net/";
 
     public static APIService getAPIService() {
         return RestService.getClient(BASE_URL).create(APIService.class);

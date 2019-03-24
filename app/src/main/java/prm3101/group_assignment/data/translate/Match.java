@@ -14,36 +14,58 @@ public class Match implements Serializable {
     @SerializedName("id")
     @Expose
     private String id;
+
+    @SuppressWarnings("unused")
     @SerializedName("segment")
     @Expose
     private String segment;
+
+    @SuppressWarnings("unused")
     @SerializedName("translation")
     @Expose
     private String translation;
+
+    @SuppressWarnings("unused")
     @SerializedName("quality")
     @Expose
     private String quality;
+
+    @SuppressWarnings("unused")
     @SerializedName("reference")
     @Expose
     private Object reference;
+
+    @SuppressWarnings("unused")
     @SerializedName("usage-count")
     @Expose
     private Integer usageCount;
+
+    @SuppressWarnings("unused")
     @SerializedName("subject")
     @Expose
     private String subject;
+
+    @SuppressWarnings("unused")
     @SerializedName("created-by")
     @Expose
     private String createdBy;
+
+    @SuppressWarnings("unused")
     @SerializedName("last-updated-by")
     @Expose
     private String lastUpdatedBy;
+
+    @SuppressWarnings("unused")
     @SerializedName("create-date")
     @Expose
     private String createDate;
+
+    @SuppressWarnings("unused")
     @SerializedName("last-update-date")
     @Expose
     private String lastUpdateDate;
+
+    @SuppressWarnings("unused")
     @SerializedName("match")
     @Expose
     private Double match;
@@ -54,94 +76,6 @@ public class Match implements Serializable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getSegment() {
-        return segment;
-    }
-
-    public void setSegment(String segment) {
-        this.segment = segment;
-    }
-
-    public String getTranslation() {
-        return translation;
-    }
-
-    public void setTranslation(String translation) {
-        this.translation = translation;
-    }
-
-    public String getQuality() {
-        return quality;
-    }
-
-    public void setQuality(String quality) {
-        this.quality = quality;
-    }
-
-    public Object getReference() {
-        return reference;
-    }
-
-    public void setReference(Object reference) {
-        this.reference = reference;
-    }
-
-    public Integer getUsageCount() {
-        return usageCount;
-    }
-
-    public void setUsageCount(Integer usageCount) {
-        this.usageCount = usageCount;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getLastUpdateDate() {
-        return lastUpdateDate;
-    }
-
-    public void setLastUpdateDate(String lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-    }
-
-    public Double getMatch() {
-        return match;
-    }
-
-    public void setMatch(Double match) {
-        this.match = match;
     }
 
 }

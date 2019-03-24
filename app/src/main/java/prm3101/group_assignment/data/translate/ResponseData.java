@@ -11,27 +11,18 @@ import java.io.Serializable;
 
 public class ResponseData implements Serializable {
 
+    @SuppressWarnings("unused")
     @SerializedName("translatedText")
     @Expose
     private String translatedText;
+
+    @SuppressWarnings("unused")
     @SerializedName("match")
     @Expose
     private Double match;
 
     public String getTranslatedText() {
         return translatedText;
-    }
-
-    public void setTranslatedText(String translatedText) {
-        this.translatedText = translatedText;
-    }
-
-    public Double getMatch() {
-        return match;
-    }
-
-    public void setMatch(Double match) {
-        this.match = match;
     }
 
 }

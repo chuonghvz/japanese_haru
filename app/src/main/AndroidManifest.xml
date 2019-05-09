@@ -5,13 +5,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-
     <application
         android:name=".util.FirebaseApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_japan"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_japan"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.SplashActivity">
@@ -21,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.KanjiDetailActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.ChatbotActivity" />

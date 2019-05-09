@@ -3,19 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/toolbarSearch"
-        layout="@layout/toolbar_search"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true" />
 
     <RelativeLayout
+        android:id="@+id/container"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbarSearch">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/level"
@@ -59,22 +57,15 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-
-        <ScrollView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/kanjiLevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/spinner"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/kanjiLevel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.v7.widget.RecyclerView>
-
-        </ScrollView>
+        </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
 

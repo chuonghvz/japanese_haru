@@ -21,74 +21,82 @@ import prm3101.group_assignment.data.KanjiExample;
 public class KanjiDetailActivity extends AppCompatActivity {
 
     private VideoView mVideoView;
+    private TextView mTitle, mMean, mOnHira, mOnRead, mKuHira, mKuRead;
+    private ImageView mReplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kanji_detail);
-        Toolbar mToolbar = findViewById(R.id.toolbar);
-        TextView mTitle = findViewById(R.id.toolbar_text);
-        setSupportActionBar(mToolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        TextView mMean = findViewById(R.id.mean);
-        TextView mOnHira = findViewById(R.id.onHira);
-        TextView mOnRead = findViewById(R.id.onRead);
-        TextView mKuHira = findViewById(R.id.kuHira);
-        TextView mKuRead = findViewById(R.id.kuRead);
-        mVideoView = findViewById(R.id.videoView);
-        ImageView mReplay = findViewById(R.id.replay);
 
+        initView();
 
-        // Set data
+        // Set data to view
         try {
-            JSONObject kanjiData = new JSONObject(getIntent().getStringExtra("kanjiData"));
-            String videoLink = kanjiData.getJSONObject("kanji").getJSONObject("video").getString("mp4");
-            Uri video = Uri.parse(videoLink);
-            mVideoView.setVideoURI(video);
-            mVideoView.setOnPreparedListener(mp -> {
-                mp.setLooping(false);
-                mVideoView.start();
-            });
-            mReplay.setOnClickListener(view -> mVideoView.start());
-            String title = kanjiData.getJSONObject("kanji").getString("character");
-            String mean = kanjiData.getJSONObject("kanji").getJSONObject("meaning").getString("english");
-            String onyomi_romaji = kanjiData.getJSONObject("kanji").getJSONObject("onyomi")
-                    .getString("romaji");
-            String onyomi_katakana = kanjiData.getJSONObject("kanji").getJSONObject("onyomi")
-                    .getString("katakana");
-            String kunyomi_romaji = kanjiData.getJSONObject("kanji").getJSONObject("kunyomi")
-                    .getString("romaji");
-            String kunyomi_hiragana = kanjiData.getJSONObject("kanji").getJSONObject("kunyomi")
-                    .getString("hiragana");
-            mTitle.setText(title);
-            mMean.setText(mean);
-            mOnHira.setText(onyomi_katakana);
-            mOnRead.setText(onyomi_romaji);
-            mKuHira.setText(kunyomi_hiragana);
-            mKuRead.setText(kunyomi_romaji);
-
-            //Example list
-            JSONArray listExample = kanjiData.getJSONArray("examples");
-            ArrayList<KanjiExample> data = new ArrayList<>();
-            RecyclerView recyclerView = findViewById(R.id.exampleList);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(KanjiDetailActivity.this);
-            recyclerView.setLayoutManager(layoutManager);
-            ExampleAdapter adapter = new ExampleAdapter(KanjiDetailActivity.this, data);
-            for (int i = 0; i < listExample.length(); i++) {
-                JSONObject exampleData = listExample.getJSONObject(i);
-                String hira = exampleData.getString("japanese");
-                String exMean = exampleData.getJSONObject("meaning").getString("english");
-                String audio = exampleData.getJSONObject("audio").getString("mp3");
-                KanjiExample ex = new KanjiExample(hira, exMean, audio);
-                data.add(ex);
-            }
-            recyclerView.setAdapter(adapter);
-
+            initData();
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
+    private void initView(){
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+        mTitle = findViewById(R.id.toolbar_text);
+        setSupportActionBar(mToolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mMean = findViewById(R.id.mean);
+        mOnHira = findViewById(R.id.onHira);
+        mOnRead = findViewById(R.id.onRead);
+        mKuHira = findViewById(R.id.kuHira);
+        mKuRead = findViewById(R.id.kuRead);
+        mVideoView = findViewById(R.id.videoView);
+        mReplay = findViewById(R.id.replay);
+    }
+
+    private void initData() throws JSONException{
+        JSONObject kanjiData = new JSONObject(getIntent().getStringExtra("kanjiData"));
+        String videoLink = kanjiData.getJSONObject("kanji").getJSONObject("video").getString("mp4");
+        Uri video = Uri.parse(videoLink);
+        mVideoView.setVideoURI(video);
+        mVideoView.setOnPreparedListener(mp -> {
+            mp.setLooping(false);
+            mVideoView.start();
+        });
+        mReplay.setOnClickListener(view -> mVideoView.start());
+        String title = kanjiData.getJSONObject("kanji").getString("character");
+        String mean = kanjiData.getJSONObject("kanji").getJSONObject("meaning").getString("english");
+        String onyomi_romaji = kanjiData.getJSONObject("kanji").getJSONObject("onyomi")
+                .getString("romaji");
+        String onyomi_katakana = kanjiData.getJSONObject("kanji").getJSONObject("onyomi")
+                .getString("katakana");
+        String kunyomi_romaji = kanjiData.getJSONObject("kanji").getJSONObject("kunyomi")
+                .getString("romaji");
+        String kunyomi_hiragana = kanjiData.getJSONObject("kanji").getJSONObject("kunyomi")
+                .getString("hiragana");
+        mTitle.setText(title);
+        mMean.setText(mean);
+        mOnHira.setText(onyomi_katakana);
+        mOnRead.setText(onyomi_romaji);
+        mKuHira.setText(kunyomi_hiragana);
+        mKuRead.setText(kunyomi_romaji);
+
+        //Example list
+        JSONArray listExample = kanjiData.getJSONArray("examples");
+        ArrayList<KanjiExample> data = new ArrayList<>();
+        RecyclerView recyclerView = findViewById(R.id.exampleList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(KanjiDetailActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+        ExampleAdapter adapter = new ExampleAdapter(KanjiDetailActivity.this, data);
+        for (int i = 0; i < listExample.length(); i++) {
+            JSONObject exampleData = listExample.getJSONObject(i);
+            String hira = exampleData.getString("japanese");
+            String exMean = exampleData.getJSONObject("meaning").getString("english");
+            String audio = exampleData.getJSONObject("audio").getString("mp3");
+            KanjiExample ex = new KanjiExample(hira, exMean, audio);
+            data.add(ex);
+        }
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

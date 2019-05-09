@@ -17,7 +17,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import prm3101.group_assignment.R;
-import prm3101.group_assignment.activity.SearchActivity;
 import prm3101.group_assignment.adapter.KanjiAdapter;
 import prm3101.group_assignment.data.Kanji;
 import prm3101.group_assignment.data.KanjiLevel;
@@ -131,7 +129,7 @@ public class Utilities {
     //Search Kanji
     public void searchKanji(RecyclerView recyclerView, EditText searchView, JSONArray AllKanji, Context context) {
         searchView.clearFocus();
-        InputMethodManager in = (InputMethodManager) context.getSystemService(SearchActivity.INPUT_METHOD_SERVICE);
+        InputMethodManager in = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
 
         // Search method

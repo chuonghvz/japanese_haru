@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Japanese_Mobile.iml" filepath="$PROJECT_DIR$/Japanese_Mobile.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Learn_Kanji_with_Haru.iml" filepath="$PROJECT_DIR$/Learn_Kanji_with_Haru.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/japanese_haru.iml" filepath="$PROJECT_DIR$/japanese_haru.iml" />
       <module fileurl="file://$PROJECT_DIR$/japanese_haru.iml" filepath="$PROJECT_DIR$/japanese_haru.iml" />
     </modules>
   </component>

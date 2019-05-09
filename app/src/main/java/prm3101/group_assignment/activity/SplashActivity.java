@@ -12,7 +12,7 @@ import prm3101.group_assignment.util.Utilities;
 public class SplashActivity extends AppCompatActivity {
 
     private SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String MyPREFERENCES = "MyPrefs";
     private Utilities utils = new Utilities();
 
     @Override
@@ -25,17 +25,19 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    String allKanji = utils.readJSONdata(SplashActivity.this);
                     sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.putString("All_KANJI", allKanji);
-                    editor.apply();
+                    String allKanji = sharedpreferences.getString("All_KANJI", null);
+                    if (allKanji == null) {
+                        allKanji = utils.readJSONdata(SplashActivity.this);
+                        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString("All_KANJI", allKanji);
+                        editor.apply();
+                    }
                 } catch (Exception ignored) {
                 } finally {
-                    finish();
                     Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
-                    SplashActivity.this.startActivity(mainIntent);
-                    SplashActivity.this.finish();
+                    startActivity(mainIntent);
                 }
             }
         };

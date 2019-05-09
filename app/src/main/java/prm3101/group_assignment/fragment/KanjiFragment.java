@@ -1,22 +1,20 @@
 package prm3101.group_assignment.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -26,7 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import prm3101.group_assignment.R;
-import prm3101.group_assignment.activity.SearchActivity;
 import prm3101.group_assignment.adapter.KanjiLevelAdapter;
 import prm3101.group_assignment.data.KanjiLevel;
 import prm3101.group_assignment.util.Utilities;
@@ -40,7 +37,8 @@ public class KanjiFragment extends Fragment {
     private Utilities utils = new Utilities();
     private SharedPreferences prefs;
     private Spinner dropdown;
-    private FloatingActionButton mSearch;
+    private RelativeLayout container;
+    private ProgressBar progressBar;
 
     public static KanjiFragment newInstance() {
         return new KanjiFragment();
@@ -54,11 +52,23 @@ public class KanjiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_kanji, container, false);
+        View view = inflater.inflate(R.layout.fragment_kanji, container, false);
+        initView(view);
+
+        // Update View with Kanji level data
+        new UpdateView().execute();
+        updateView();
+
+        return view;
+    }
+
+    private void initView(View v){
         dropdown = v.findViewById(R.id.spinner);
         mKanjiLevel = v.findViewById(R.id.kanjiLevel);
         mTotalValue = v.findViewById(R.id.totalValue);
         searchBar = v.findViewById(R.id.searchValue);
+        progressBar = v.findViewById(R.id.progressBar);
+        container = v.findViewById(R.id.container);
 
         final ArrayList<KanjiLevel> temp = new ArrayList<>();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -70,11 +80,11 @@ public class KanjiFragment extends Fragment {
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(spinnerAdapter);
+    }
 
-        // Update View with Kanji level data
-        new UpdateView().execute();
-
-        return v;
+    private void updateView(){
+        progressBar.setVisibility(View.GONE);
+        container.setVisibility(View.VISIBLE);
     }
 
     public class UpdateView extends AsyncTask<Void, Void, HashMap<String, ArrayList<KanjiLevel>>>{
@@ -139,6 +149,7 @@ public class KanjiFragment extends Fragment {
                 }
             });
         }
+
     }
 
 }

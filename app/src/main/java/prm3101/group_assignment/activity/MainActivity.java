@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import prm3101.group_assignment.R;
 import prm3101.group_assignment.fragment.HiraFragment;
 import prm3101.group_assignment.fragment.KanjiFragment;
+import prm3101.group_assignment.fragment.SearchFragment;
 import prm3101.group_assignment.fragment.TranslateFragment;
 import prm3101.group_assignment.util.Utilities;
 
@@ -19,10 +20,6 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Toolbar mToolbar = (Toolbar) findViewById(R.id.nav_action);
-//        TextView mToolbarText = (TextView) findViewById(R.id.toolbar_text);
-//        mToolbarText.setText(R.string.home);
-//        setSupportActionBar(mToolbar);
 
         navigationView = findViewById(R.id.bottom_navigation);
         Utilities.disableShiftMode(navigationView);
@@ -53,6 +50,9 @@ public class MainActivity extends AppCompatActivity{
                 break;
             case R.id.translate:
                 Utilities.startFragment(getSupportFragmentManager(), TranslateFragment.newInstance());
+                break;
+            case R.id.search:
+                Utilities.startFragment(getSupportFragmentManager(), SearchFragment.newInstance());
                 break;
         }
         return true;

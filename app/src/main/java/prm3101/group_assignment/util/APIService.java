@@ -12,7 +12,7 @@ import retrofit2.http.QueryMap;
 
 public interface APIService {
 
-    // URL_Test = https://api.mymemory.translated.net/get?q=Hello World&langpair=en|ja
+    // example request -- https://api.mymemory.translated.net/get?q=Hello%20World&langpair=en|ja
 
     @GET("get")
     Call<TranslateResponse> getTranslateResponse(@QueryMap Map<String, String> keyWord);

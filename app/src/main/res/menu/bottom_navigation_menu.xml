@@ -15,8 +15,15 @@
         android:title="Translate" />
 
     <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search" />
+
+    <item
         android:id="@+id/chatbot"
         android:icon="@drawable/ic_kabuki"
         android:title="Haru" />
+
+
 
 </menu>

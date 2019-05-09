@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "prm3101.group_assignment"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -12,6 +12,11 @@ android {
     }
     buildTypes {
         release {
+            lintOptions {
+                disable 'MissingTranslation'
+                checkReleaseBuilds false
+                abortOnError false
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -40,21 +45,20 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:appcompat-v7:26.0.1'
-    implementation 'com.android.support:recyclerview-v7:26.0.1'
-    implementation 'com.android.support:design:26.0.1'
-    implementation 'com.android.support:support-v4:26.0.1'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.android.support:cardview-v7:24.2.1'
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
-    implementation 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'
+    implementation 'com.google.firebase:firebase-database:17.0.0'
     implementation 'com.firebaseui:firebase-ui-database:2.3.0'
     implementation 'ai.api:sdk:2.0.7@aar'
     implementation 'ai.api:libai:1.6.12'
     implementation 'commons-io:commons-io:2.4'
-
 }
 
 apply plugin: 'com.google.gms.google-services'

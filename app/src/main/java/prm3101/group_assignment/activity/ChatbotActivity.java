@@ -50,7 +50,8 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
     private FirebaseRecyclerAdapter<ChatMessage, ChatbotAdapter> chatbotAdapter;
     private Boolean flagFab = true;
     private AIService aiService;
-
+    private RelativeLayout voiceBtn;
+    private final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
     final AIConfiguration config = new AIConfiguration(TOKEN, AIConfiguration.SupportedLanguages.English,
             AIConfiguration.RecognitionEngine.System);
     final AIDataService aiDataService = new AIDataService(config);
@@ -61,20 +62,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbot);
 
-        //Set toolbar
-        TextView mToolbarText = findViewById(R.id.toolbar_text);
-        mToolbarText.setText(R.string.chatbot);
-        Toolbar mToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        mInputText = findViewById(R.id.inputText);
-        RelativeLayout voiceBtn = findViewById(R.id.voiceBtn);
-        recyclerView = findViewById(R.id.chatData);
-        recyclerView.setHasFixedSize(true);
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        initView();
 
         //ChatBot - Register to Dialogflow/Firebase
         ActivityCompat.requestPermissions
@@ -85,6 +73,35 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
         aiService.setListener(this);
 
         // Voice/Sent button click
+        voiceButtonListener();
+
+        // Input EditText click
+        textChangeListener();
+
+        // Send message to chatbot
+        sendMessageToChatbot();
+
+        // get result from chatbot server
+        getChatbotResponse();
+
+    }
+
+    private void initView(){
+        TextView mToolbarText = findViewById(R.id.toolbar_text);
+        mToolbarText.setText(R.string.chatbot);
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mInputText = findViewById(R.id.inputText);
+        voiceBtn = findViewById(R.id.voiceBtn);
+        recyclerView = findViewById(R.id.chatData);
+        recyclerView.setHasFixedSize(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    private void voiceButtonListener(){
         voiceBtn.setOnClickListener(view -> {
             String message = mInputText.getText().toString().trim();
             if (!message.equals("")) {
@@ -97,11 +114,12 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
                 aiService.startListening();
             }
             mInputText.setText("");
-            InputMethodManager in = (InputMethodManager) getSystemService(SearchActivity.INPUT_METHOD_SERVICE);
+            InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             in.hideSoftInputFromWindow(mInputText.getWindowToken(), 0);
         });
+    }
 
-        // Input EditText click
+    private void textChangeListener(){
         mInputText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
@@ -129,8 +147,9 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
             }
         });
+    }
 
-        //Chatbot Adapter
+    private void sendMessageToChatbot(){
         chatbotAdapter = new FirebaseRecyclerAdapter<ChatMessage, ChatbotAdapter>
                 (ChatMessage.class, R.layout.items_chatbot, ChatbotAdapter.class, ref.child("chat")) {
 
@@ -149,7 +168,9 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
 
             }
         };
+    }
 
+    private void getChatbotResponse(){
         chatbotAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
@@ -167,7 +188,6 @@ public class ChatbotActivity extends AppCompatActivity implements AIListener {
         });
 
         recyclerView.setAdapter(chatbotAdapter);
-
     }
 
     // Call text response from API
